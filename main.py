@@ -21,6 +21,10 @@ tokens = [
     'RPAREN',
     'NUMBER',
     'ID',
+    'EQUALITY', #=
+    'SEMICOLON', #;
+    'DOT',
+    'APOSTROPHE'
 ]+ list(reserved.values())
 
 
@@ -32,9 +36,10 @@ t_TIMES  = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_EYE = r'eye'
-t_ZEROS = r'zeros'
-
+t_EQUALITY = r'='
+t_SEMICOLON = r';'
+t_DOT = r'.'
+t_APOSTROPHE = r"'" # nie dziala , nie wiem czemu .
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'

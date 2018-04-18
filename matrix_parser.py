@@ -240,7 +240,7 @@ class MatrixParser:
         print('p_function: {}'.format(p[0]))
 
     def p_error(self, p):
-        print('/' * 40 + 'ERROR\nIllegal symbol {}'.format(p.value) + '/' * 40)
+        print('/' * 40 + 'ERROR\nIllegal symbol {}\n'.format(p.value) + '/' * 40)
 
     def __init__(self):
         self.parser = None

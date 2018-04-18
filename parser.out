@@ -1,0 +1,2777 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> PROGRAM
+Rule 2     PROGRAM -> PROGRAM INSTRUCTION
+Rule 3     PROGRAM -> INSTRUCTION
+Rule 4     INSTRUCTION -> STATEMENT SEMICOLON
+Rule 5     INSTRUCTION -> IF_STATEMENT
+Rule 6     INSTRUCTION -> WHILE_STATEMENT
+Rule 7     INSTRUCTION -> FOR_STATEMENT
+Rule 8     STATEMENT -> ASSIGNMENT
+Rule 9     STATEMENT -> KEYWORD
+Rule 10    ASSIGNMENT -> VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+Rule 11    VARIABLE -> ID
+Rule 12    VARIABLE -> ACCESS
+Rule 13    ACCESS -> ID LBRACKET SEQUENCE RBRACKET
+Rule 14    SEQUENCE -> SEQUENCE COMMA EXPRESSION
+Rule 15    SEQUENCE -> EXPRESSION
+Rule 16    VALUE -> FLOAT
+Rule 17    VALUE -> INT
+Rule 18    VALUE -> ID
+Rule 19    VALUE -> STRING
+Rule 20    VALUE -> MATRIX
+Rule 21    VALUE -> ACCESS
+Rule 22    MATRIX -> LBRACKET ROWS RBRACKET
+Rule 23    ROWS -> ROWS SEMICOLON SEQUENCE
+Rule 24    ROWS -> SEQUENCE
+Rule 25    EXPRESSION -> VALUE
+Rule 26    EXPRESSION -> MINUS EXPRESSION
+Rule 27    EXPRESSION -> EXPRESSION TRANSPOSE
+Rule 28    EXPRESSION -> LPAREN EXPRESSION RPAREN
+Rule 29    EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+Rule 30    EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN
+Rule 31    KEYWORD -> PRINT SEQUENCE
+Rule 32    KEYWORD -> BREAK
+Rule 33    KEYWORD -> CONTINUE
+Rule 34    KEYWORD -> RETURN EXPRESSION
+Rule 35    RELATION -> EXPRESSION COMPARISION_OPERATOR EXPRESSION
+Rule 36    BODY -> LCURLY PROGRAM RCURLY
+Rule 37    BODY -> INSTRUCTION
+Rule 38    IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY
+Rule 39    IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY
+Rule 40    WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY
+Rule 41    FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY
+Rule 42    RANGE -> EXPRESSION COLON EXPRESSION
+Rule 43    RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION
+Rule 44    ASSIGNMENT_OPERATOR -> ASSIGN
+Rule 45    ASSIGNMENT_OPERATOR -> PLUSASSIGN
+Rule 46    ASSIGNMENT_OPERATOR -> MINUSASSIGN
+Rule 47    ASSIGNMENT_OPERATOR -> TIMESASSIGN
+Rule 48    ASSIGNMENT_OPERATOR -> DIVIDEASSIGN
+Rule 49    COMPARISION_OPERATOR -> LESS
+Rule 50    COMPARISION_OPERATOR -> MORE
+Rule 51    COMPARISION_OPERATOR -> EQUAL
+Rule 52    COMPARISION_OPERATOR -> INEQUAL
+Rule 53    COMPARISION_OPERATOR -> LESSEQUAL
+Rule 54    COMPARISION_OPERATOR -> MOREEQUAL
+Rule 55    MATHEMATICAL_OPERATOR -> PLUS
+Rule 56    MATHEMATICAL_OPERATOR -> MINUS
+Rule 57    MATHEMATICAL_OPERATOR -> TIMES
+Rule 58    MATHEMATICAL_OPERATOR -> DIVIDE
+Rule 59    MATHEMATICAL_OPERATOR -> MPLUS
+Rule 60    MATHEMATICAL_OPERATOR -> MMINUS
+Rule 61    MATHEMATICAL_OPERATOR -> MTIMES
+Rule 62    MATHEMATICAL_OPERATOR -> MDIVIDE
+Rule 63    FUNCTION -> EYE
+Rule 64    FUNCTION -> ZEROS
+Rule 65    FUNCTION -> ONES
+
+Terminals, with rules where they appear
+
+ASSIGN               : 41 44
+BREAK                : 32
+COLON                : 42 43 43
+COMMA                : 14
+CONTINUE             : 33
+DIVIDE               : 58
+DIVIDEASSIGN         : 48
+ELSE                 : 39
+EQUAL                : 51
+EYE                  : 63
+FLOAT                : 16
+FOR                  : 41
+ID                   : 11 13 18 41
+IF                   : 38 39
+INEQUAL              : 52
+INT                  : 17
+LBRACKET             : 13 22
+LCURLY               : 36
+LESS                 : 49
+LESSEQUAL            : 53
+LPAREN               : 28 30 38 39 40
+MDIVIDE              : 62
+MINUS                : 26 56
+MINUSASSIGN          : 46
+MMINUS               : 60
+MORE                 : 50
+MOREEQUAL            : 54
+MPLUS                : 59
+MTIMES               : 61
+ONES                 : 65
+PLUS                 : 55
+PLUSASSIGN           : 45
+PRINT                : 31
+RBRACKET             : 13 22
+RCURLY               : 36
+RETURN               : 34
+RPAREN               : 28 30 38 39 40
+SEMICOLON            : 4 23
+STRING               : 19
+TIMES                : 57
+TIMESASSIGN          : 47
+TRANSPOSE            : 27
+WHILE                : 40
+ZEROS                : 64
+error                : 
+
+Nonterminals, with rules where they appear
+
+ACCESS               : 12 21
+ASSIGNMENT           : 8
+ASSIGNMENT_OPERATOR  : 10
+BODY                 : 38 39 39 40 41
+COMPARISION_OPERATOR : 35
+EXPRESSION           : 10 14 15 26 27 28 29 29 30 34 35 35 42 42 43 43 43
+FOR_STATEMENT        : 7
+FUNCTION             : 30
+IF_STATEMENT         : 5
+INSTRUCTION          : 2 3 37
+KEYWORD              : 9
+MATHEMATICAL_OPERATOR : 29
+MATRIX               : 20
+PROGRAM              : 1 2 36
+RANGE                : 41
+RELATION             : 38 39 40
+ROWS                 : 22 23
+SEQUENCE             : 13 14 23 24 31
+STATEMENT            : 4
+VALUE                : 25
+VARIABLE             : 10
+WHILE_STATEMENT      : 6
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . PROGRAM
+    (2) PROGRAM -> . PROGRAM INSTRUCTION
+    (3) PROGRAM -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    start                          shift and go to state 1
+    PROGRAM                        shift and go to state 2
+    INSTRUCTION                    shift and go to state 3
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> PROGRAM .
+    (2) PROGRAM -> PROGRAM . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    $end            reduce using rule 1 (start -> PROGRAM .)
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    INSTRUCTION                    shift and go to state 20
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 3
+
+    (3) PROGRAM -> INSTRUCTION .
+
+    IF              reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    WHILE           reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    FOR             reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    PRINT           reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    BREAK           reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    CONTINUE        reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    RETURN          reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    ID              reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    $end            reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+    RCURLY          reduce using rule 3 (PROGRAM -> INSTRUCTION .)
+
+
+state 4
+
+    (4) INSTRUCTION -> STATEMENT . SEMICOLON
+
+    SEMICOLON       shift and go to state 21
+
+
+state 5
+
+    (5) INSTRUCTION -> IF_STATEMENT .
+
+    IF              reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    WHILE           reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    FOR             reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    PRINT           reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    BREAK           reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    CONTINUE        reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    RETURN          reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    ID              reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    $end            reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    ELSE            reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+    RCURLY          reduce using rule 5 (INSTRUCTION -> IF_STATEMENT .)
+
+
+state 6
+
+    (6) INSTRUCTION -> WHILE_STATEMENT .
+
+    IF              reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    WHILE           reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    FOR             reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    PRINT           reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    BREAK           reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    CONTINUE        reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    RETURN          reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    ID              reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    $end            reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    ELSE            reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+    RCURLY          reduce using rule 6 (INSTRUCTION -> WHILE_STATEMENT .)
+
+
+state 7
+
+    (7) INSTRUCTION -> FOR_STATEMENT .
+
+    IF              reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    WHILE           reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    FOR             reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    PRINT           reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    BREAK           reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    CONTINUE        reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    RETURN          reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    ID              reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    $end            reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    ELSE            reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+    RCURLY          reduce using rule 7 (INSTRUCTION -> FOR_STATEMENT .)
+
+
+state 8
+
+    (8) STATEMENT -> ASSIGNMENT .
+
+    SEMICOLON       reduce using rule 8 (STATEMENT -> ASSIGNMENT .)
+
+
+state 9
+
+    (9) STATEMENT -> KEYWORD .
+
+    SEMICOLON       reduce using rule 9 (STATEMENT -> KEYWORD .)
+
+
+state 10
+
+    (38) IF_STATEMENT -> IF . LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> IF . LPAREN RELATION RPAREN BODY ELSE BODY
+
+    LPAREN          shift and go to state 22
+
+
+state 11
+
+    (40) WHILE_STATEMENT -> WHILE . LPAREN RELATION RPAREN BODY
+
+    LPAREN          shift and go to state 23
+
+
+state 12
+
+    (41) FOR_STATEMENT -> FOR . ID ASSIGN RANGE BODY
+
+    ID              shift and go to state 24
+
+
+state 13
+
+    (11) VARIABLE -> ID .
+    (13) ACCESS -> ID . LBRACKET SEQUENCE RBRACKET
+
+    ASSIGN          reduce using rule 11 (VARIABLE -> ID .)
+    PLUSASSIGN      reduce using rule 11 (VARIABLE -> ID .)
+    MINUSASSIGN     reduce using rule 11 (VARIABLE -> ID .)
+    TIMESASSIGN     reduce using rule 11 (VARIABLE -> ID .)
+    DIVIDEASSIGN    reduce using rule 11 (VARIABLE -> ID .)
+    LBRACKET        shift and go to state 25
+
+
+state 14
+
+    (10) ASSIGNMENT -> VARIABLE . ASSIGNMENT_OPERATOR EXPRESSION
+    (44) ASSIGNMENT_OPERATOR -> . ASSIGN
+    (45) ASSIGNMENT_OPERATOR -> . PLUSASSIGN
+    (46) ASSIGNMENT_OPERATOR -> . MINUSASSIGN
+    (47) ASSIGNMENT_OPERATOR -> . TIMESASSIGN
+    (48) ASSIGNMENT_OPERATOR -> . DIVIDEASSIGN
+
+    ASSIGN          shift and go to state 27
+    PLUSASSIGN      shift and go to state 28
+    MINUSASSIGN     shift and go to state 29
+    TIMESASSIGN     shift and go to state 30
+    DIVIDEASSIGN    shift and go to state 31
+
+    ASSIGNMENT_OPERATOR            shift and go to state 26
+
+state 15
+
+    (31) KEYWORD -> PRINT . SEQUENCE
+    (14) SEQUENCE -> . SEQUENCE COMMA EXPRESSION
+    (15) SEQUENCE -> . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    SEQUENCE                       shift and go to state 32
+    EXPRESSION                     shift and go to state 33
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 16
+
+    (32) KEYWORD -> BREAK .
+
+    SEMICOLON       reduce using rule 32 (KEYWORD -> BREAK .)
+
+
+state 17
+
+    (33) KEYWORD -> CONTINUE .
+
+    SEMICOLON       reduce using rule 33 (KEYWORD -> CONTINUE .)
+
+
+state 18
+
+    (34) KEYWORD -> RETURN . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 48
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 19
+
+    (12) VARIABLE -> ACCESS .
+
+    ASSIGN          reduce using rule 12 (VARIABLE -> ACCESS .)
+    PLUSASSIGN      reduce using rule 12 (VARIABLE -> ACCESS .)
+    MINUSASSIGN     reduce using rule 12 (VARIABLE -> ACCESS .)
+    TIMESASSIGN     reduce using rule 12 (VARIABLE -> ACCESS .)
+    DIVIDEASSIGN    reduce using rule 12 (VARIABLE -> ACCESS .)
+
+
+state 20
+
+    (2) PROGRAM -> PROGRAM INSTRUCTION .
+
+    IF              reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    WHILE           reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    FOR             reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    PRINT           reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    BREAK           reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    CONTINUE        reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    RETURN          reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    ID              reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    $end            reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+    RCURLY          reduce using rule 2 (PROGRAM -> PROGRAM INSTRUCTION .)
+
+
+state 21
+
+    (4) INSTRUCTION -> STATEMENT SEMICOLON .
+
+    IF              reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    WHILE           reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    FOR             reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    PRINT           reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    BREAK           reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    CONTINUE        reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    RETURN          reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    ID              reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    $end            reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    ELSE            reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+    RCURLY          reduce using rule 4 (INSTRUCTION -> STATEMENT SEMICOLON .)
+
+
+state 22
+
+    (38) IF_STATEMENT -> IF LPAREN . RELATION RPAREN BODY
+    (39) IF_STATEMENT -> IF LPAREN . RELATION RPAREN BODY ELSE BODY
+    (35) RELATION -> . EXPRESSION COMPARISION_OPERATOR EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    RELATION                       shift and go to state 49
+    EXPRESSION                     shift and go to state 50
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 23
+
+    (40) WHILE_STATEMENT -> WHILE LPAREN . RELATION RPAREN BODY
+    (35) RELATION -> . EXPRESSION COMPARISION_OPERATOR EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    RELATION                       shift and go to state 51
+    EXPRESSION                     shift and go to state 50
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 24
+
+    (41) FOR_STATEMENT -> FOR ID . ASSIGN RANGE BODY
+
+    ASSIGN          shift and go to state 52
+
+
+state 25
+
+    (13) ACCESS -> ID LBRACKET . SEQUENCE RBRACKET
+    (14) SEQUENCE -> . SEQUENCE COMMA EXPRESSION
+    (15) SEQUENCE -> . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    SEQUENCE                       shift and go to state 53
+    EXPRESSION                     shift and go to state 33
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 26
+
+    (10) ASSIGNMENT -> VARIABLE ASSIGNMENT_OPERATOR . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 54
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 27
+
+    (44) ASSIGNMENT_OPERATOR -> ASSIGN .
+
+    MINUS           reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    LPAREN          reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    FLOAT           reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    INT             reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    ID              reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    STRING          reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    EYE             reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    ZEROS           reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    ONES            reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+    LBRACKET        reduce using rule 44 (ASSIGNMENT_OPERATOR -> ASSIGN .)
+
+
+state 28
+
+    (45) ASSIGNMENT_OPERATOR -> PLUSASSIGN .
+
+    MINUS           reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    LPAREN          reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    FLOAT           reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    INT             reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    ID              reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    STRING          reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    EYE             reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    ZEROS           reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    ONES            reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+    LBRACKET        reduce using rule 45 (ASSIGNMENT_OPERATOR -> PLUSASSIGN .)
+
+
+state 29
+
+    (46) ASSIGNMENT_OPERATOR -> MINUSASSIGN .
+
+    MINUS           reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    LPAREN          reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    FLOAT           reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    INT             reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    ID              reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    STRING          reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    EYE             reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    ZEROS           reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    ONES            reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+    LBRACKET        reduce using rule 46 (ASSIGNMENT_OPERATOR -> MINUSASSIGN .)
+
+
+state 30
+
+    (47) ASSIGNMENT_OPERATOR -> TIMESASSIGN .
+
+    MINUS           reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    LPAREN          reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    FLOAT           reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    INT             reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    ID              reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    STRING          reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    EYE             reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    ZEROS           reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    ONES            reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+    LBRACKET        reduce using rule 47 (ASSIGNMENT_OPERATOR -> TIMESASSIGN .)
+
+
+state 31
+
+    (48) ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .
+
+    MINUS           reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    LPAREN          reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    FLOAT           reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    INT             reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    ID              reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    STRING          reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    EYE             reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    ZEROS           reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    ONES            reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+    LBRACKET        reduce using rule 48 (ASSIGNMENT_OPERATOR -> DIVIDEASSIGN .)
+
+
+state 32
+
+    (31) KEYWORD -> PRINT SEQUENCE .
+    (14) SEQUENCE -> SEQUENCE . COMMA EXPRESSION
+
+    SEMICOLON       reduce using rule 31 (KEYWORD -> PRINT SEQUENCE .)
+    COMMA           shift and go to state 55
+
+
+state 33
+
+    (15) SEQUENCE -> EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    COMMA           reduce using rule 15 (SEQUENCE -> EXPRESSION .)
+    SEMICOLON       reduce using rule 15 (SEQUENCE -> EXPRESSION .)
+    RBRACKET        reduce using rule 15 (SEQUENCE -> EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 34
+
+    (25) EXPRESSION -> VALUE .
+
+    TRANSPOSE       reduce using rule 25 (EXPRESSION -> VALUE .)
+    PLUS            reduce using rule 25 (EXPRESSION -> VALUE .)
+    MINUS           reduce using rule 25 (EXPRESSION -> VALUE .)
+    TIMES           reduce using rule 25 (EXPRESSION -> VALUE .)
+    DIVIDE          reduce using rule 25 (EXPRESSION -> VALUE .)
+    MPLUS           reduce using rule 25 (EXPRESSION -> VALUE .)
+    MMINUS          reduce using rule 25 (EXPRESSION -> VALUE .)
+    MTIMES          reduce using rule 25 (EXPRESSION -> VALUE .)
+    MDIVIDE         reduce using rule 25 (EXPRESSION -> VALUE .)
+    COMMA           reduce using rule 25 (EXPRESSION -> VALUE .)
+    SEMICOLON       reduce using rule 25 (EXPRESSION -> VALUE .)
+    LESS            reduce using rule 25 (EXPRESSION -> VALUE .)
+    MORE            reduce using rule 25 (EXPRESSION -> VALUE .)
+    EQUAL           reduce using rule 25 (EXPRESSION -> VALUE .)
+    INEQUAL         reduce using rule 25 (EXPRESSION -> VALUE .)
+    LESSEQUAL       reduce using rule 25 (EXPRESSION -> VALUE .)
+    MOREEQUAL       reduce using rule 25 (EXPRESSION -> VALUE .)
+    RBRACKET        reduce using rule 25 (EXPRESSION -> VALUE .)
+    RPAREN          reduce using rule 25 (EXPRESSION -> VALUE .)
+    COLON           reduce using rule 25 (EXPRESSION -> VALUE .)
+    LCURLY          reduce using rule 25 (EXPRESSION -> VALUE .)
+    IF              reduce using rule 25 (EXPRESSION -> VALUE .)
+    WHILE           reduce using rule 25 (EXPRESSION -> VALUE .)
+    FOR             reduce using rule 25 (EXPRESSION -> VALUE .)
+    PRINT           reduce using rule 25 (EXPRESSION -> VALUE .)
+    BREAK           reduce using rule 25 (EXPRESSION -> VALUE .)
+    CONTINUE        reduce using rule 25 (EXPRESSION -> VALUE .)
+    RETURN          reduce using rule 25 (EXPRESSION -> VALUE .)
+    ID              reduce using rule 25 (EXPRESSION -> VALUE .)
+
+
+state 35
+
+    (26) EXPRESSION -> MINUS . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 66
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 36
+
+    (28) EXPRESSION -> LPAREN . EXPRESSION RPAREN
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 67
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 37
+
+    (30) EXPRESSION -> FUNCTION . LPAREN EXPRESSION RPAREN
+
+    LPAREN          shift and go to state 68
+
+
+state 38
+
+    (16) VALUE -> FLOAT .
+
+    TRANSPOSE       reduce using rule 16 (VALUE -> FLOAT .)
+    PLUS            reduce using rule 16 (VALUE -> FLOAT .)
+    MINUS           reduce using rule 16 (VALUE -> FLOAT .)
+    TIMES           reduce using rule 16 (VALUE -> FLOAT .)
+    DIVIDE          reduce using rule 16 (VALUE -> FLOAT .)
+    MPLUS           reduce using rule 16 (VALUE -> FLOAT .)
+    MMINUS          reduce using rule 16 (VALUE -> FLOAT .)
+    MTIMES          reduce using rule 16 (VALUE -> FLOAT .)
+    MDIVIDE         reduce using rule 16 (VALUE -> FLOAT .)
+    COMMA           reduce using rule 16 (VALUE -> FLOAT .)
+    SEMICOLON       reduce using rule 16 (VALUE -> FLOAT .)
+    LESS            reduce using rule 16 (VALUE -> FLOAT .)
+    MORE            reduce using rule 16 (VALUE -> FLOAT .)
+    EQUAL           reduce using rule 16 (VALUE -> FLOAT .)
+    INEQUAL         reduce using rule 16 (VALUE -> FLOAT .)
+    LESSEQUAL       reduce using rule 16 (VALUE -> FLOAT .)
+    MOREEQUAL       reduce using rule 16 (VALUE -> FLOAT .)
+    RBRACKET        reduce using rule 16 (VALUE -> FLOAT .)
+    RPAREN          reduce using rule 16 (VALUE -> FLOAT .)
+    COLON           reduce using rule 16 (VALUE -> FLOAT .)
+    LCURLY          reduce using rule 16 (VALUE -> FLOAT .)
+    IF              reduce using rule 16 (VALUE -> FLOAT .)
+    WHILE           reduce using rule 16 (VALUE -> FLOAT .)
+    FOR             reduce using rule 16 (VALUE -> FLOAT .)
+    PRINT           reduce using rule 16 (VALUE -> FLOAT .)
+    BREAK           reduce using rule 16 (VALUE -> FLOAT .)
+    CONTINUE        reduce using rule 16 (VALUE -> FLOAT .)
+    RETURN          reduce using rule 16 (VALUE -> FLOAT .)
+    ID              reduce using rule 16 (VALUE -> FLOAT .)
+
+
+state 39
+
+    (17) VALUE -> INT .
+
+    TRANSPOSE       reduce using rule 17 (VALUE -> INT .)
+    PLUS            reduce using rule 17 (VALUE -> INT .)
+    MINUS           reduce using rule 17 (VALUE -> INT .)
+    TIMES           reduce using rule 17 (VALUE -> INT .)
+    DIVIDE          reduce using rule 17 (VALUE -> INT .)
+    MPLUS           reduce using rule 17 (VALUE -> INT .)
+    MMINUS          reduce using rule 17 (VALUE -> INT .)
+    MTIMES          reduce using rule 17 (VALUE -> INT .)
+    MDIVIDE         reduce using rule 17 (VALUE -> INT .)
+    COMMA           reduce using rule 17 (VALUE -> INT .)
+    SEMICOLON       reduce using rule 17 (VALUE -> INT .)
+    LESS            reduce using rule 17 (VALUE -> INT .)
+    MORE            reduce using rule 17 (VALUE -> INT .)
+    EQUAL           reduce using rule 17 (VALUE -> INT .)
+    INEQUAL         reduce using rule 17 (VALUE -> INT .)
+    LESSEQUAL       reduce using rule 17 (VALUE -> INT .)
+    MOREEQUAL       reduce using rule 17 (VALUE -> INT .)
+    RBRACKET        reduce using rule 17 (VALUE -> INT .)
+    RPAREN          reduce using rule 17 (VALUE -> INT .)
+    COLON           reduce using rule 17 (VALUE -> INT .)
+    LCURLY          reduce using rule 17 (VALUE -> INT .)
+    IF              reduce using rule 17 (VALUE -> INT .)
+    WHILE           reduce using rule 17 (VALUE -> INT .)
+    FOR             reduce using rule 17 (VALUE -> INT .)
+    PRINT           reduce using rule 17 (VALUE -> INT .)
+    BREAK           reduce using rule 17 (VALUE -> INT .)
+    CONTINUE        reduce using rule 17 (VALUE -> INT .)
+    RETURN          reduce using rule 17 (VALUE -> INT .)
+    ID              reduce using rule 17 (VALUE -> INT .)
+
+
+state 40
+
+    (18) VALUE -> ID .
+    (13) ACCESS -> ID . LBRACKET SEQUENCE RBRACKET
+
+    TRANSPOSE       reduce using rule 18 (VALUE -> ID .)
+    PLUS            reduce using rule 18 (VALUE -> ID .)
+    MINUS           reduce using rule 18 (VALUE -> ID .)
+    TIMES           reduce using rule 18 (VALUE -> ID .)
+    DIVIDE          reduce using rule 18 (VALUE -> ID .)
+    MPLUS           reduce using rule 18 (VALUE -> ID .)
+    MMINUS          reduce using rule 18 (VALUE -> ID .)
+    MTIMES          reduce using rule 18 (VALUE -> ID .)
+    MDIVIDE         reduce using rule 18 (VALUE -> ID .)
+    COMMA           reduce using rule 18 (VALUE -> ID .)
+    SEMICOLON       reduce using rule 18 (VALUE -> ID .)
+    LESS            reduce using rule 18 (VALUE -> ID .)
+    MORE            reduce using rule 18 (VALUE -> ID .)
+    EQUAL           reduce using rule 18 (VALUE -> ID .)
+    INEQUAL         reduce using rule 18 (VALUE -> ID .)
+    LESSEQUAL       reduce using rule 18 (VALUE -> ID .)
+    MOREEQUAL       reduce using rule 18 (VALUE -> ID .)
+    RBRACKET        reduce using rule 18 (VALUE -> ID .)
+    RPAREN          reduce using rule 18 (VALUE -> ID .)
+    COLON           reduce using rule 18 (VALUE -> ID .)
+    LCURLY          reduce using rule 18 (VALUE -> ID .)
+    IF              reduce using rule 18 (VALUE -> ID .)
+    WHILE           reduce using rule 18 (VALUE -> ID .)
+    FOR             reduce using rule 18 (VALUE -> ID .)
+    PRINT           reduce using rule 18 (VALUE -> ID .)
+    BREAK           reduce using rule 18 (VALUE -> ID .)
+    CONTINUE        reduce using rule 18 (VALUE -> ID .)
+    RETURN          reduce using rule 18 (VALUE -> ID .)
+    ID              reduce using rule 18 (VALUE -> ID .)
+    LBRACKET        shift and go to state 25
+
+
+state 41
+
+    (19) VALUE -> STRING .
+
+    TRANSPOSE       reduce using rule 19 (VALUE -> STRING .)
+    PLUS            reduce using rule 19 (VALUE -> STRING .)
+    MINUS           reduce using rule 19 (VALUE -> STRING .)
+    TIMES           reduce using rule 19 (VALUE -> STRING .)
+    DIVIDE          reduce using rule 19 (VALUE -> STRING .)
+    MPLUS           reduce using rule 19 (VALUE -> STRING .)
+    MMINUS          reduce using rule 19 (VALUE -> STRING .)
+    MTIMES          reduce using rule 19 (VALUE -> STRING .)
+    MDIVIDE         reduce using rule 19 (VALUE -> STRING .)
+    COMMA           reduce using rule 19 (VALUE -> STRING .)
+    SEMICOLON       reduce using rule 19 (VALUE -> STRING .)
+    LESS            reduce using rule 19 (VALUE -> STRING .)
+    MORE            reduce using rule 19 (VALUE -> STRING .)
+    EQUAL           reduce using rule 19 (VALUE -> STRING .)
+    INEQUAL         reduce using rule 19 (VALUE -> STRING .)
+    LESSEQUAL       reduce using rule 19 (VALUE -> STRING .)
+    MOREEQUAL       reduce using rule 19 (VALUE -> STRING .)
+    RBRACKET        reduce using rule 19 (VALUE -> STRING .)
+    RPAREN          reduce using rule 19 (VALUE -> STRING .)
+    COLON           reduce using rule 19 (VALUE -> STRING .)
+    LCURLY          reduce using rule 19 (VALUE -> STRING .)
+    IF              reduce using rule 19 (VALUE -> STRING .)
+    WHILE           reduce using rule 19 (VALUE -> STRING .)
+    FOR             reduce using rule 19 (VALUE -> STRING .)
+    PRINT           reduce using rule 19 (VALUE -> STRING .)
+    BREAK           reduce using rule 19 (VALUE -> STRING .)
+    CONTINUE        reduce using rule 19 (VALUE -> STRING .)
+    RETURN          reduce using rule 19 (VALUE -> STRING .)
+    ID              reduce using rule 19 (VALUE -> STRING .)
+
+
+state 42
+
+    (20) VALUE -> MATRIX .
+
+    TRANSPOSE       reduce using rule 20 (VALUE -> MATRIX .)
+    PLUS            reduce using rule 20 (VALUE -> MATRIX .)
+    MINUS           reduce using rule 20 (VALUE -> MATRIX .)
+    TIMES           reduce using rule 20 (VALUE -> MATRIX .)
+    DIVIDE          reduce using rule 20 (VALUE -> MATRIX .)
+    MPLUS           reduce using rule 20 (VALUE -> MATRIX .)
+    MMINUS          reduce using rule 20 (VALUE -> MATRIX .)
+    MTIMES          reduce using rule 20 (VALUE -> MATRIX .)
+    MDIVIDE         reduce using rule 20 (VALUE -> MATRIX .)
+    COMMA           reduce using rule 20 (VALUE -> MATRIX .)
+    SEMICOLON       reduce using rule 20 (VALUE -> MATRIX .)
+    LESS            reduce using rule 20 (VALUE -> MATRIX .)
+    MORE            reduce using rule 20 (VALUE -> MATRIX .)
+    EQUAL           reduce using rule 20 (VALUE -> MATRIX .)
+    INEQUAL         reduce using rule 20 (VALUE -> MATRIX .)
+    LESSEQUAL       reduce using rule 20 (VALUE -> MATRIX .)
+    MOREEQUAL       reduce using rule 20 (VALUE -> MATRIX .)
+    RBRACKET        reduce using rule 20 (VALUE -> MATRIX .)
+    RPAREN          reduce using rule 20 (VALUE -> MATRIX .)
+    COLON           reduce using rule 20 (VALUE -> MATRIX .)
+    LCURLY          reduce using rule 20 (VALUE -> MATRIX .)
+    IF              reduce using rule 20 (VALUE -> MATRIX .)
+    WHILE           reduce using rule 20 (VALUE -> MATRIX .)
+    FOR             reduce using rule 20 (VALUE -> MATRIX .)
+    PRINT           reduce using rule 20 (VALUE -> MATRIX .)
+    BREAK           reduce using rule 20 (VALUE -> MATRIX .)
+    CONTINUE        reduce using rule 20 (VALUE -> MATRIX .)
+    RETURN          reduce using rule 20 (VALUE -> MATRIX .)
+    ID              reduce using rule 20 (VALUE -> MATRIX .)
+
+
+state 43
+
+    (21) VALUE -> ACCESS .
+
+    TRANSPOSE       reduce using rule 21 (VALUE -> ACCESS .)
+    PLUS            reduce using rule 21 (VALUE -> ACCESS .)
+    MINUS           reduce using rule 21 (VALUE -> ACCESS .)
+    TIMES           reduce using rule 21 (VALUE -> ACCESS .)
+    DIVIDE          reduce using rule 21 (VALUE -> ACCESS .)
+    MPLUS           reduce using rule 21 (VALUE -> ACCESS .)
+    MMINUS          reduce using rule 21 (VALUE -> ACCESS .)
+    MTIMES          reduce using rule 21 (VALUE -> ACCESS .)
+    MDIVIDE         reduce using rule 21 (VALUE -> ACCESS .)
+    COMMA           reduce using rule 21 (VALUE -> ACCESS .)
+    SEMICOLON       reduce using rule 21 (VALUE -> ACCESS .)
+    LESS            reduce using rule 21 (VALUE -> ACCESS .)
+    MORE            reduce using rule 21 (VALUE -> ACCESS .)
+    EQUAL           reduce using rule 21 (VALUE -> ACCESS .)
+    INEQUAL         reduce using rule 21 (VALUE -> ACCESS .)
+    LESSEQUAL       reduce using rule 21 (VALUE -> ACCESS .)
+    MOREEQUAL       reduce using rule 21 (VALUE -> ACCESS .)
+    RBRACKET        reduce using rule 21 (VALUE -> ACCESS .)
+    RPAREN          reduce using rule 21 (VALUE -> ACCESS .)
+    COLON           reduce using rule 21 (VALUE -> ACCESS .)
+    LCURLY          reduce using rule 21 (VALUE -> ACCESS .)
+    IF              reduce using rule 21 (VALUE -> ACCESS .)
+    WHILE           reduce using rule 21 (VALUE -> ACCESS .)
+    FOR             reduce using rule 21 (VALUE -> ACCESS .)
+    PRINT           reduce using rule 21 (VALUE -> ACCESS .)
+    BREAK           reduce using rule 21 (VALUE -> ACCESS .)
+    CONTINUE        reduce using rule 21 (VALUE -> ACCESS .)
+    RETURN          reduce using rule 21 (VALUE -> ACCESS .)
+    ID              reduce using rule 21 (VALUE -> ACCESS .)
+
+
+state 44
+
+    (63) FUNCTION -> EYE .
+
+    LPAREN          reduce using rule 63 (FUNCTION -> EYE .)
+
+
+state 45
+
+    (64) FUNCTION -> ZEROS .
+
+    LPAREN          reduce using rule 64 (FUNCTION -> ZEROS .)
+
+
+state 46
+
+    (65) FUNCTION -> ONES .
+
+    LPAREN          reduce using rule 65 (FUNCTION -> ONES .)
+
+
+state 47
+
+    (22) MATRIX -> LBRACKET . ROWS RBRACKET
+    (23) ROWS -> . ROWS SEMICOLON SEQUENCE
+    (24) ROWS -> . SEQUENCE
+    (14) SEQUENCE -> . SEQUENCE COMMA EXPRESSION
+    (15) SEQUENCE -> . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    ROWS                           shift and go to state 69
+    SEQUENCE                       shift and go to state 70
+    EXPRESSION                     shift and go to state 33
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 48
+
+    (34) KEYWORD -> RETURN EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    SEMICOLON       reduce using rule 34 (KEYWORD -> RETURN EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 49
+
+    (38) IF_STATEMENT -> IF LPAREN RELATION . RPAREN BODY
+    (39) IF_STATEMENT -> IF LPAREN RELATION . RPAREN BODY ELSE BODY
+
+    RPAREN          shift and go to state 71
+
+
+state 50
+
+    (35) RELATION -> EXPRESSION . COMPARISION_OPERATOR EXPRESSION
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (49) COMPARISION_OPERATOR -> . LESS
+    (50) COMPARISION_OPERATOR -> . MORE
+    (51) COMPARISION_OPERATOR -> . EQUAL
+    (52) COMPARISION_OPERATOR -> . INEQUAL
+    (53) COMPARISION_OPERATOR -> . LESSEQUAL
+    (54) COMPARISION_OPERATOR -> . MOREEQUAL
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    TRANSPOSE       shift and go to state 56
+    LESS            shift and go to state 73
+    MORE            shift and go to state 74
+    EQUAL           shift and go to state 75
+    INEQUAL         shift and go to state 76
+    LESSEQUAL       shift and go to state 77
+    MOREEQUAL       shift and go to state 78
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    COMPARISION_OPERATOR           shift and go to state 72
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 51
+
+    (40) WHILE_STATEMENT -> WHILE LPAREN RELATION . RPAREN BODY
+
+    RPAREN          shift and go to state 79
+
+
+state 52
+
+    (41) FOR_STATEMENT -> FOR ID ASSIGN . RANGE BODY
+    (42) RANGE -> . EXPRESSION COLON EXPRESSION
+    (43) RANGE -> . EXPRESSION COLON EXPRESSION COLON EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    RANGE                          shift and go to state 80
+    EXPRESSION                     shift and go to state 81
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 53
+
+    (13) ACCESS -> ID LBRACKET SEQUENCE . RBRACKET
+    (14) SEQUENCE -> SEQUENCE . COMMA EXPRESSION
+
+    RBRACKET        shift and go to state 82
+    COMMA           shift and go to state 55
+
+
+state 54
+
+    (10) ASSIGNMENT -> VARIABLE ASSIGNMENT_OPERATOR EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    SEMICOLON       reduce using rule 10 (ASSIGNMENT -> VARIABLE ASSIGNMENT_OPERATOR EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 55
+
+    (14) SEQUENCE -> SEQUENCE COMMA . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 83
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 56
+
+    (27) EXPRESSION -> EXPRESSION TRANSPOSE .
+
+    TRANSPOSE       reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    PLUS            reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MINUS           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    TIMES           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    DIVIDE          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MPLUS           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MMINUS          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MTIMES          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MDIVIDE         reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    COMMA           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    SEMICOLON       reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    LESS            reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MORE            reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    EQUAL           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    INEQUAL         reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    LESSEQUAL       reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    MOREEQUAL       reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    RBRACKET        reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    RPAREN          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    COLON           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    LCURLY          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    IF              reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    WHILE           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    FOR             reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    PRINT           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    BREAK           reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    CONTINUE        reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    RETURN          reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+    ID              reduce using rule 27 (EXPRESSION -> EXPRESSION TRANSPOSE .)
+
+
+state 57
+
+    (29) EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 84
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 58
+
+    (55) MATHEMATICAL_OPERATOR -> PLUS .
+
+    MINUS           reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    LPAREN          reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    FLOAT           reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    INT             reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    ID              reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    STRING          reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    EYE             reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    ZEROS           reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    ONES            reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+    LBRACKET        reduce using rule 55 (MATHEMATICAL_OPERATOR -> PLUS .)
+
+
+state 59
+
+    (56) MATHEMATICAL_OPERATOR -> MINUS .
+
+    MINUS           reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    LPAREN          reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    FLOAT           reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    INT             reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    ID              reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    STRING          reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    EYE             reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    ZEROS           reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    ONES            reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+    LBRACKET        reduce using rule 56 (MATHEMATICAL_OPERATOR -> MINUS .)
+
+
+state 60
+
+    (57) MATHEMATICAL_OPERATOR -> TIMES .
+
+    MINUS           reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    LPAREN          reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    FLOAT           reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    INT             reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    ID              reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    STRING          reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    EYE             reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    ZEROS           reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    ONES            reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+    LBRACKET        reduce using rule 57 (MATHEMATICAL_OPERATOR -> TIMES .)
+
+
+state 61
+
+    (58) MATHEMATICAL_OPERATOR -> DIVIDE .
+
+    MINUS           reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    LPAREN          reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    FLOAT           reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    INT             reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    ID              reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    STRING          reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    EYE             reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    ZEROS           reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    ONES            reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+    LBRACKET        reduce using rule 58 (MATHEMATICAL_OPERATOR -> DIVIDE .)
+
+
+state 62
+
+    (59) MATHEMATICAL_OPERATOR -> MPLUS .
+
+    MINUS           reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    LPAREN          reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    FLOAT           reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    INT             reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    ID              reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    STRING          reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    EYE             reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    ZEROS           reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    ONES            reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+    LBRACKET        reduce using rule 59 (MATHEMATICAL_OPERATOR -> MPLUS .)
+
+
+state 63
+
+    (60) MATHEMATICAL_OPERATOR -> MMINUS .
+
+    MINUS           reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    LPAREN          reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    FLOAT           reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    INT             reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    ID              reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    STRING          reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    EYE             reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    ZEROS           reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    ONES            reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+    LBRACKET        reduce using rule 60 (MATHEMATICAL_OPERATOR -> MMINUS .)
+
+
+state 64
+
+    (61) MATHEMATICAL_OPERATOR -> MTIMES .
+
+    MINUS           reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    LPAREN          reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    FLOAT           reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    INT             reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    ID              reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    STRING          reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    EYE             reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    ZEROS           reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    ONES            reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+    LBRACKET        reduce using rule 61 (MATHEMATICAL_OPERATOR -> MTIMES .)
+
+
+state 65
+
+    (62) MATHEMATICAL_OPERATOR -> MDIVIDE .
+
+    MINUS           reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    LPAREN          reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    FLOAT           reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    INT             reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    ID              reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    STRING          reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    EYE             reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    ZEROS           reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    ONES            reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+    LBRACKET        reduce using rule 62 (MATHEMATICAL_OPERATOR -> MDIVIDE .)
+
+
+state 66
+
+    (26) EXPRESSION -> MINUS EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    TRANSPOSE       reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    PLUS            reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MINUS           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    TIMES           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    DIVIDE          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MPLUS           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MMINUS          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MTIMES          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MDIVIDE         reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    COMMA           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    SEMICOLON       reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    LESS            reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MORE            reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    EQUAL           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    INEQUAL         reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    LESSEQUAL       reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    MOREEQUAL       reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    RBRACKET        reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    RPAREN          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    COLON           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    LCURLY          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    IF              reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    WHILE           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    FOR             reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    PRINT           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    BREAK           reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    CONTINUE        reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    RETURN          reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+    ID              reduce using rule 26 (EXPRESSION -> MINUS EXPRESSION .)
+
+  ! TRANSPOSE       [ shift and go to state 56 ]
+  ! PLUS            [ shift and go to state 58 ]
+  ! MINUS           [ shift and go to state 59 ]
+  ! TIMES           [ shift and go to state 60 ]
+  ! DIVIDE          [ shift and go to state 61 ]
+  ! MPLUS           [ shift and go to state 62 ]
+  ! MMINUS          [ shift and go to state 63 ]
+  ! MTIMES          [ shift and go to state 64 ]
+  ! MDIVIDE         [ shift and go to state 65 ]
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 67
+
+    (28) EXPRESSION -> LPAREN EXPRESSION . RPAREN
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    RPAREN          shift and go to state 85
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 68
+
+    (30) EXPRESSION -> FUNCTION LPAREN . EXPRESSION RPAREN
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    FUNCTION                       shift and go to state 37
+    EXPRESSION                     shift and go to state 86
+    VALUE                          shift and go to state 34
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 69
+
+    (22) MATRIX -> LBRACKET ROWS . RBRACKET
+    (23) ROWS -> ROWS . SEMICOLON SEQUENCE
+
+    RBRACKET        shift and go to state 87
+    SEMICOLON       shift and go to state 88
+
+
+state 70
+
+    (24) ROWS -> SEQUENCE .
+    (14) SEQUENCE -> SEQUENCE . COMMA EXPRESSION
+
+    RBRACKET        reduce using rule 24 (ROWS -> SEQUENCE .)
+    SEMICOLON       reduce using rule 24 (ROWS -> SEQUENCE .)
+    COMMA           shift and go to state 55
+
+
+state 71
+
+    (38) IF_STATEMENT -> IF LPAREN RELATION RPAREN . BODY
+    (39) IF_STATEMENT -> IF LPAREN RELATION RPAREN . BODY ELSE BODY
+    (36) BODY -> . LCURLY PROGRAM RCURLY
+    (37) BODY -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    LCURLY          shift and go to state 90
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    BODY                           shift and go to state 89
+    INSTRUCTION                    shift and go to state 91
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 72
+
+    (35) RELATION -> EXPRESSION COMPARISION_OPERATOR . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 92
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 73
+
+    (49) COMPARISION_OPERATOR -> LESS .
+
+    MINUS           reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    LPAREN          reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    FLOAT           reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    INT             reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    ID              reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    STRING          reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    EYE             reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    ZEROS           reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    ONES            reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+    LBRACKET        reduce using rule 49 (COMPARISION_OPERATOR -> LESS .)
+
+
+state 74
+
+    (50) COMPARISION_OPERATOR -> MORE .
+
+    MINUS           reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    LPAREN          reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    FLOAT           reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    INT             reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    ID              reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    STRING          reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    EYE             reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    ZEROS           reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    ONES            reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+    LBRACKET        reduce using rule 50 (COMPARISION_OPERATOR -> MORE .)
+
+
+state 75
+
+    (51) COMPARISION_OPERATOR -> EQUAL .
+
+    MINUS           reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    LPAREN          reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    FLOAT           reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    INT             reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    ID              reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    STRING          reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    EYE             reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    ZEROS           reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    ONES            reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+    LBRACKET        reduce using rule 51 (COMPARISION_OPERATOR -> EQUAL .)
+
+
+state 76
+
+    (52) COMPARISION_OPERATOR -> INEQUAL .
+
+    MINUS           reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    LPAREN          reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    FLOAT           reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    INT             reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    ID              reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    STRING          reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    EYE             reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    ZEROS           reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    ONES            reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+    LBRACKET        reduce using rule 52 (COMPARISION_OPERATOR -> INEQUAL .)
+
+
+state 77
+
+    (53) COMPARISION_OPERATOR -> LESSEQUAL .
+
+    MINUS           reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    LPAREN          reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    FLOAT           reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    INT             reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    ID              reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    STRING          reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    EYE             reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    ZEROS           reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    ONES            reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+    LBRACKET        reduce using rule 53 (COMPARISION_OPERATOR -> LESSEQUAL .)
+
+
+state 78
+
+    (54) COMPARISION_OPERATOR -> MOREEQUAL .
+
+    MINUS           reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    LPAREN          reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    FLOAT           reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    INT             reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    ID              reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    STRING          reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    EYE             reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    ZEROS           reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    ONES            reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+    LBRACKET        reduce using rule 54 (COMPARISION_OPERATOR -> MOREEQUAL .)
+
+
+state 79
+
+    (40) WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN . BODY
+    (36) BODY -> . LCURLY PROGRAM RCURLY
+    (37) BODY -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    LCURLY          shift and go to state 90
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    BODY                           shift and go to state 93
+    INSTRUCTION                    shift and go to state 91
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 80
+
+    (41) FOR_STATEMENT -> FOR ID ASSIGN RANGE . BODY
+    (36) BODY -> . LCURLY PROGRAM RCURLY
+    (37) BODY -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    LCURLY          shift and go to state 90
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    BODY                           shift and go to state 94
+    INSTRUCTION                    shift and go to state 91
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 81
+
+    (42) RANGE -> EXPRESSION . COLON EXPRESSION
+    (43) RANGE -> EXPRESSION . COLON EXPRESSION COLON EXPRESSION
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    COLON           shift and go to state 95
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 82
+
+    (13) ACCESS -> ID LBRACKET SEQUENCE RBRACKET .
+
+    ASSIGN          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    PLUSASSIGN      reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MINUSASSIGN     reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    TIMESASSIGN     reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    DIVIDEASSIGN    reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    TRANSPOSE       reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    PLUS            reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MINUS           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    TIMES           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    DIVIDE          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MPLUS           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MMINUS          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MTIMES          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MDIVIDE         reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    COMMA           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    SEMICOLON       reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    LESS            reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MORE            reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    EQUAL           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    INEQUAL         reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    LESSEQUAL       reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    MOREEQUAL       reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    RBRACKET        reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    RPAREN          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    COLON           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    LCURLY          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    IF              reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    WHILE           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    FOR             reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    PRINT           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    BREAK           reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    CONTINUE        reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    RETURN          reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+    ID              reduce using rule 13 (ACCESS -> ID LBRACKET SEQUENCE RBRACKET .)
+
+
+state 83
+
+    (14) SEQUENCE -> SEQUENCE COMMA EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    COMMA           reduce using rule 14 (SEQUENCE -> SEQUENCE COMMA EXPRESSION .)
+    SEMICOLON       reduce using rule 14 (SEQUENCE -> SEQUENCE COMMA EXPRESSION .)
+    RBRACKET        reduce using rule 14 (SEQUENCE -> SEQUENCE COMMA EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 84
+
+    (29) EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+  ! shift/reduce conflict for TRANSPOSE resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MPLUS resolved as shift
+  ! shift/reduce conflict for MMINUS resolved as shift
+  ! shift/reduce conflict for MTIMES resolved as shift
+  ! shift/reduce conflict for MDIVIDE resolved as shift
+    COMMA           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    SEMICOLON       reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    LESS            reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    MORE            reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    EQUAL           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    INEQUAL         reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    LESSEQUAL       reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    MOREEQUAL       reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    RBRACKET        reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    RPAREN          reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    COLON           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    LCURLY          reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    IF              reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    WHILE           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    FOR             reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    PRINT           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    BREAK           reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    CONTINUE        reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    RETURN          reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    ID              reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+  ! TRANSPOSE       [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! PLUS            [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! MINUS           [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! TIMES           [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! DIVIDE          [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! MPLUS           [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! MMINUS          [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! MTIMES          [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+  ! MDIVIDE         [ reduce using rule 29 (EXPRESSION -> EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION .) ]
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 85
+
+    (28) EXPRESSION -> LPAREN EXPRESSION RPAREN .
+
+    TRANSPOSE       reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    PLUS            reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MINUS           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    TIMES           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    DIVIDE          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MPLUS           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MMINUS          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MTIMES          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MDIVIDE         reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    COMMA           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    SEMICOLON       reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    LESS            reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MORE            reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    EQUAL           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    INEQUAL         reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    LESSEQUAL       reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    MOREEQUAL       reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    RBRACKET        reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    RPAREN          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    COLON           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    LCURLY          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    IF              reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    WHILE           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    FOR             reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    PRINT           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    BREAK           reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    CONTINUE        reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    RETURN          reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+    ID              reduce using rule 28 (EXPRESSION -> LPAREN EXPRESSION RPAREN .)
+
+
+state 86
+
+    (30) EXPRESSION -> FUNCTION LPAREN EXPRESSION . RPAREN
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    RPAREN          shift and go to state 96
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 87
+
+    (22) MATRIX -> LBRACKET ROWS RBRACKET .
+
+    TRANSPOSE       reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    PLUS            reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MINUS           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    TIMES           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    DIVIDE          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MPLUS           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MMINUS          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MTIMES          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MDIVIDE         reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    COMMA           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    SEMICOLON       reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    LESS            reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MORE            reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    EQUAL           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    INEQUAL         reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    LESSEQUAL       reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    MOREEQUAL       reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    RBRACKET        reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    RPAREN          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    COLON           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    LCURLY          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    IF              reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    WHILE           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    FOR             reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    PRINT           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    BREAK           reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    CONTINUE        reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    RETURN          reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+    ID              reduce using rule 22 (MATRIX -> LBRACKET ROWS RBRACKET .)
+
+
+state 88
+
+    (23) ROWS -> ROWS SEMICOLON . SEQUENCE
+    (14) SEQUENCE -> . SEQUENCE COMMA EXPRESSION
+    (15) SEQUENCE -> . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    SEQUENCE                       shift and go to state 97
+    EXPRESSION                     shift and go to state 33
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 89
+
+    (38) IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .
+    (39) IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY . ELSE BODY
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    IF              reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    WHILE           reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    FOR             reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    PRINT           reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    BREAK           reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    CONTINUE        reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    RETURN          reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    ID              reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    $end            reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    RCURLY          reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .)
+    ELSE            shift and go to state 98
+
+  ! ELSE            [ reduce using rule 38 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY .) ]
+
+
+state 90
+
+    (36) BODY -> LCURLY . PROGRAM RCURLY
+    (2) PROGRAM -> . PROGRAM INSTRUCTION
+    (3) PROGRAM -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    PROGRAM                        shift and go to state 99
+    INSTRUCTION                    shift and go to state 3
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 91
+
+    (37) BODY -> INSTRUCTION .
+
+    ELSE            reduce using rule 37 (BODY -> INSTRUCTION .)
+    IF              reduce using rule 37 (BODY -> INSTRUCTION .)
+    WHILE           reduce using rule 37 (BODY -> INSTRUCTION .)
+    FOR             reduce using rule 37 (BODY -> INSTRUCTION .)
+    PRINT           reduce using rule 37 (BODY -> INSTRUCTION .)
+    BREAK           reduce using rule 37 (BODY -> INSTRUCTION .)
+    CONTINUE        reduce using rule 37 (BODY -> INSTRUCTION .)
+    RETURN          reduce using rule 37 (BODY -> INSTRUCTION .)
+    ID              reduce using rule 37 (BODY -> INSTRUCTION .)
+    $end            reduce using rule 37 (BODY -> INSTRUCTION .)
+    RCURLY          reduce using rule 37 (BODY -> INSTRUCTION .)
+
+
+state 92
+
+    (35) RELATION -> EXPRESSION COMPARISION_OPERATOR EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    RPAREN          reduce using rule 35 (RELATION -> EXPRESSION COMPARISION_OPERATOR EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 93
+
+    (40) WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .
+
+    IF              reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    WHILE           reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    FOR             reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    PRINT           reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    BREAK           reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    CONTINUE        reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    RETURN          reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    ID              reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    $end            reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    ELSE            reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+    RCURLY          reduce using rule 40 (WHILE_STATEMENT -> WHILE LPAREN RELATION RPAREN BODY .)
+
+
+state 94
+
+    (41) FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .
+
+    IF              reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    WHILE           reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    FOR             reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    PRINT           reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    BREAK           reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    CONTINUE        reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    RETURN          reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    ID              reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    $end            reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    ELSE            reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+    RCURLY          reduce using rule 41 (FOR_STATEMENT -> FOR ID ASSIGN RANGE BODY .)
+
+
+state 95
+
+    (42) RANGE -> EXPRESSION COLON . EXPRESSION
+    (43) RANGE -> EXPRESSION COLON . EXPRESSION COLON EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 100
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 96
+
+    (30) EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .
+
+    TRANSPOSE       reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    PLUS            reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MINUS           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    TIMES           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    DIVIDE          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MPLUS           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MMINUS          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MTIMES          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MDIVIDE         reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    COMMA           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    SEMICOLON       reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    LESS            reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MORE            reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    EQUAL           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    INEQUAL         reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    LESSEQUAL       reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    MOREEQUAL       reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    RBRACKET        reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    RPAREN          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    COLON           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    LCURLY          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    IF              reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    WHILE           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    FOR             reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    PRINT           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    BREAK           reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    CONTINUE        reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    RETURN          reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+    ID              reduce using rule 30 (EXPRESSION -> FUNCTION LPAREN EXPRESSION RPAREN .)
+
+
+state 97
+
+    (23) ROWS -> ROWS SEMICOLON SEQUENCE .
+    (14) SEQUENCE -> SEQUENCE . COMMA EXPRESSION
+
+    RBRACKET        reduce using rule 23 (ROWS -> ROWS SEMICOLON SEQUENCE .)
+    SEMICOLON       reduce using rule 23 (ROWS -> ROWS SEMICOLON SEQUENCE .)
+    COMMA           shift and go to state 55
+
+
+state 98
+
+    (39) IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE . BODY
+    (36) BODY -> . LCURLY PROGRAM RCURLY
+    (37) BODY -> . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    LCURLY          shift and go to state 90
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    BODY                           shift and go to state 101
+    INSTRUCTION                    shift and go to state 91
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 99
+
+    (36) BODY -> LCURLY PROGRAM . RCURLY
+    (2) PROGRAM -> PROGRAM . INSTRUCTION
+    (4) INSTRUCTION -> . STATEMENT SEMICOLON
+    (5) INSTRUCTION -> . IF_STATEMENT
+    (6) INSTRUCTION -> . WHILE_STATEMENT
+    (7) INSTRUCTION -> . FOR_STATEMENT
+    (8) STATEMENT -> . ASSIGNMENT
+    (9) STATEMENT -> . KEYWORD
+    (38) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY
+    (39) IF_STATEMENT -> . IF LPAREN RELATION RPAREN BODY ELSE BODY
+    (40) WHILE_STATEMENT -> . WHILE LPAREN RELATION RPAREN BODY
+    (41) FOR_STATEMENT -> . FOR ID ASSIGN RANGE BODY
+    (10) ASSIGNMENT -> . VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
+    (31) KEYWORD -> . PRINT SEQUENCE
+    (32) KEYWORD -> . BREAK
+    (33) KEYWORD -> . CONTINUE
+    (34) KEYWORD -> . RETURN EXPRESSION
+    (11) VARIABLE -> . ID
+    (12) VARIABLE -> . ACCESS
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    RCURLY          shift and go to state 102
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    FOR             shift and go to state 12
+    PRINT           shift and go to state 15
+    BREAK           shift and go to state 16
+    CONTINUE        shift and go to state 17
+    RETURN          shift and go to state 18
+    ID              shift and go to state 13
+
+    INSTRUCTION                    shift and go to state 20
+    STATEMENT                      shift and go to state 4
+    IF_STATEMENT                   shift and go to state 5
+    WHILE_STATEMENT                shift and go to state 6
+    FOR_STATEMENT                  shift and go to state 7
+    ASSIGNMENT                     shift and go to state 8
+    KEYWORD                        shift and go to state 9
+    VARIABLE                       shift and go to state 14
+    ACCESS                         shift and go to state 19
+
+state 100
+
+    (42) RANGE -> EXPRESSION COLON EXPRESSION .
+    (43) RANGE -> EXPRESSION COLON EXPRESSION . COLON EXPRESSION
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    LCURLY          reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    IF              reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    WHILE           reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    FOR             reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    PRINT           reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    BREAK           reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    CONTINUE        reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    RETURN          reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    ID              reduce using rule 42 (RANGE -> EXPRESSION COLON EXPRESSION .)
+    COLON           shift and go to state 103
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+
+state 101
+
+    (39) IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .
+
+    IF              reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    WHILE           reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    FOR             reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    PRINT           reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    BREAK           reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    CONTINUE        reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    RETURN          reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    ID              reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    $end            reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    ELSE            reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+    RCURLY          reduce using rule 39 (IF_STATEMENT -> IF LPAREN RELATION RPAREN BODY ELSE BODY .)
+
+
+state 102
+
+    (36) BODY -> LCURLY PROGRAM RCURLY .
+
+    ELSE            reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    IF              reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    WHILE           reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    FOR             reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    PRINT           reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    BREAK           reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    CONTINUE        reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    RETURN          reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    ID              reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    $end            reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+    RCURLY          reduce using rule 36 (BODY -> LCURLY PROGRAM RCURLY .)
+
+
+state 103
+
+    (43) RANGE -> EXPRESSION COLON EXPRESSION COLON . EXPRESSION
+    (25) EXPRESSION -> . VALUE
+    (26) EXPRESSION -> . MINUS EXPRESSION
+    (27) EXPRESSION -> . EXPRESSION TRANSPOSE
+    (28) EXPRESSION -> . LPAREN EXPRESSION RPAREN
+    (29) EXPRESSION -> . EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
+    (30) EXPRESSION -> . FUNCTION LPAREN EXPRESSION RPAREN
+    (16) VALUE -> . FLOAT
+    (17) VALUE -> . INT
+    (18) VALUE -> . ID
+    (19) VALUE -> . STRING
+    (20) VALUE -> . MATRIX
+    (21) VALUE -> . ACCESS
+    (63) FUNCTION -> . EYE
+    (64) FUNCTION -> . ZEROS
+    (65) FUNCTION -> . ONES
+    (22) MATRIX -> . LBRACKET ROWS RBRACKET
+    (13) ACCESS -> . ID LBRACKET SEQUENCE RBRACKET
+
+    MINUS           shift and go to state 35
+    LPAREN          shift and go to state 36
+    FLOAT           shift and go to state 38
+    INT             shift and go to state 39
+    ID              shift and go to state 40
+    STRING          shift and go to state 41
+    EYE             shift and go to state 44
+    ZEROS           shift and go to state 45
+    ONES            shift and go to state 46
+    LBRACKET        shift and go to state 47
+
+    EXPRESSION                     shift and go to state 104
+    VALUE                          shift and go to state 34
+    FUNCTION                       shift and go to state 37
+    MATRIX                         shift and go to state 42
+    ACCESS                         shift and go to state 43
+
+state 104
+
+    (43) RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .
+    (27) EXPRESSION -> EXPRESSION . TRANSPOSE
+    (29) EXPRESSION -> EXPRESSION . MATHEMATICAL_OPERATOR EXPRESSION
+    (55) MATHEMATICAL_OPERATOR -> . PLUS
+    (56) MATHEMATICAL_OPERATOR -> . MINUS
+    (57) MATHEMATICAL_OPERATOR -> . TIMES
+    (58) MATHEMATICAL_OPERATOR -> . DIVIDE
+    (59) MATHEMATICAL_OPERATOR -> . MPLUS
+    (60) MATHEMATICAL_OPERATOR -> . MMINUS
+    (61) MATHEMATICAL_OPERATOR -> . MTIMES
+    (62) MATHEMATICAL_OPERATOR -> . MDIVIDE
+
+    LCURLY          reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    IF              reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    WHILE           reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    FOR             reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    PRINT           reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    BREAK           reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    CONTINUE        reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    RETURN          reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    ID              reduce using rule 43 (RANGE -> EXPRESSION COLON EXPRESSION COLON EXPRESSION .)
+    TRANSPOSE       shift and go to state 56
+    PLUS            shift and go to state 58
+    MINUS           shift and go to state 59
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+    MPLUS           shift and go to state 62
+    MMINUS          shift and go to state 63
+    MTIMES          shift and go to state 64
+    MDIVIDE         shift and go to state 65
+
+    MATHEMATICAL_OPERATOR          shift and go to state 57
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for TRANSPOSE in state 84 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 84 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 84 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 84 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 84 resolved as shift
+WARNING: shift/reduce conflict for MPLUS in state 84 resolved as shift
+WARNING: shift/reduce conflict for MMINUS in state 84 resolved as shift
+WARNING: shift/reduce conflict for MTIMES in state 84 resolved as shift
+WARNING: shift/reduce conflict for MDIVIDE in state 84 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 89 resolved as shift

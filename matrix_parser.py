@@ -2,6 +2,8 @@ import ast
 import ply.yacc as yacc
 from matrix_lexer import MatrixLexer
 
+# TODO: usunac warningi
+# TODO: zmienic nazwy nieterminali na male litery
 
 class MatrixParser:
     tokens = MatrixLexer.tokens
@@ -12,6 +14,7 @@ class MatrixParser:
         ('left', 'TIMES', 'DIVIDE'),
         ('right', 'UMINUS')
     )
+    # TODO: dodac operatory macierzowe i zmienic priorytety if i else
 
     def p_start(self, p):
         """start : PROGRAM"""
@@ -122,6 +125,8 @@ class MatrixParser:
                    | EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
                    | FUNCTION LPAREN EXPRESSION RPAREN
         """
+
+        # TODO: rozbic na wiele metod zamiast ifow
         if len(p) == 2:
             p[0] = p[1]
         elif len(p) == 3 and p[1] == '-':

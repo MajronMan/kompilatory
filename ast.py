@@ -1,4 +1,9 @@
-class BinaryExpression:
+class Node(object):
+    def __init__(self, instructions):
+        self.instructions = instructions
+
+
+class BinaryExpression(Node):
     def __init__(self, left, operator, right):
         self.left = left
         self.operator = operator
@@ -8,11 +13,7 @@ class BinaryExpression:
         return '{} {} {}'.format(self.left, self.operator, self.right)
 
 
-class Relation(BinaryExpression):
-    pass
-
-
-class UnaryExpression:
+class UnaryExpression(Node):
     def __init__(self, operator, operand, left=True):
         self.operator = operator
         self.operand = operand
@@ -37,7 +38,7 @@ class Assignment(BinaryExpression):
     pass
 
 
-class Function:
+class Function(Node):
     def __init__(self, name, argument):
         self.name = name
         self.argument = argument
@@ -46,7 +47,7 @@ class Function:
         return "{}({})".format(self.name, self.argument)
 
 
-class Variable:
+class Variable(Node):
     def __init__(self, name):
         self.name = name
 
@@ -54,7 +55,7 @@ class Variable:
         return '{}'.format(self.name)
 
 
-class If:
+class If(Node):
     def __init__(self, condition, expression, else_expression=None):
         self.condition = condition
         self.expression = expression
@@ -67,7 +68,7 @@ class If:
         return result
 
 
-class While:
+class While(Node):
     def __init__(self, condition, body):
         self.condition = condition
         self.body = body
@@ -76,7 +77,7 @@ class While:
         return 'WHILE {} DO {}'.format(self.condition, self.body)
 
 
-class Range:
+class Range(Node):
     def __init__(self, start, end, step=1):
         self.start = start
         self.end = end
@@ -86,7 +87,7 @@ class Range:
         return '{}:{}:{}'.format(self.start, self.end, self.step)
 
 
-class For:
+class For(Node):
     def __init__(self, id, range, body):
         self.id = id
         self.range = range
@@ -96,17 +97,17 @@ class For:
         return 'FOR {} IN {} DO {}'.format(self.id, self.range, self.body)
 
 
-class Break:
+class Break(Node):
     def __repr__(self):
         return 'BREAK'
 
 
-class Continue:
+class Continue(Node):
     def __repr__(self):
         return 'CONTINUE'
 
 
-class Return:
+class Return(Node):
     def __init__(self, result):
         self.result = result
 
@@ -114,7 +115,7 @@ class Return:
         return 'RETURN( {} )'.format(self.result)
 
 
-class Print:
+class Print(Node):
     def __init__(self, expression):
         self.expression = expression
 
@@ -122,10 +123,59 @@ class Print:
         return 'PRINT( {} )'.format(self.expression)
 
 
-class Access:
+class Access(Node):
     def __init__(self, variable, key):
         self.variable = variable
         self.key = key
 
     def __repr__(self):
         return '{}[{}]'.format(self.variable, self.key)
+
+
+class Error(Node):
+    def __init__(self):
+        pass
+
+
+class Instructions(Node):
+    def __init__(self, instructions, instruction):
+        self.instructions = instructions
+        self.instruction = instruction
+
+
+class Start(Node):
+    def __init__(self, instructions):
+        self.instructions = instructions
+
+
+class Instruction(Node):
+    def __init__(self, instruction):
+        self.instruction = instruction
+
+
+class MatrixInitializer(Node):
+    def __init__(self, instruction):
+        self.instruction = instruction
+
+
+class Rows(Node):
+    def __init__(self):
+        self.row_list = []
+
+    def append_row(self, a):
+        self.row_list.append(a)
+
+    def cons_row(self, row_list, a):
+        self.row_list = list(row_list)
+        self.row_list.append(a)
+
+
+class Value(Node):
+    def __init__(self, value):
+        self.value = value
+
+
+class Sequence(Node):
+    def __init__(self, sequence, expression):
+        self.sequence = sequence
+        self.expression = expression

@@ -1,8 +1,7 @@
 import ast
 import ply.yacc as yacc
+
 from matrix_lexer import MatrixLexer
-
-
 class MatrixParser:
     tokens = MatrixLexer.tokens
 
@@ -15,8 +14,8 @@ class MatrixParser:
 
     def p_start(self, p):
         """start : PROGRAM"""
-        p[0] = p[1]
-        print('p_start: {}'.format(p[0]))
+        p[0] = ast.Start(p[1])
+        #print('p_start: {}'.format(p[0]))
 
     def p_program(self, p):
         """
@@ -24,11 +23,10 @@ class MatrixParser:
                 | INSTRUCTION
         """
         if len(p) == 2:
-            p[0] = [p[1]]
+            p[0] = ast.Instruction(p[1])
         elif len(p) == 3:
-            p[1].append(p[2])
-            p[0] = p[1]
-        print('p_program: {}'.format(p[0]))
+            p[0] = ast.Instructions(p[1], p[2])
+        #print('p_program: {}'.format(p[0]))
 
     def p_instruction(self, p):
         """
@@ -37,23 +35,23 @@ class MatrixParser:
                     | WHILE_STATEMENT
                     | FOR_STATEMENT
         """
-        p[0] = p[1]
-        print('p_instruction: {}'.format(p[0]))
+        p[0] = ast.Instruction(p[1])
+        #print('p_instruction: {}'.format(p[0]))
 
     def p_statement(self, p):
         """
         STATEMENT : ASSIGNMENT
                   | KEYWORD
         """
-        p[0] = p[1]
-        print('p_statement: {}'.format(p[0]))
+        p[0] = ast.Instruction(p[1]) ## ??
+        #print('p_statement: {}'.format(p[0]))
 
     def p_assignment(self, p):
         """
         ASSIGNMENT : VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
         """
         p[0] = ast.Assignment(p[1], p[2], p[3])
-        print('p_assignment: {}'.format(p[0]))
+        #print('p_assignment: {}'.format(p[0]))
 
     def p_variable(self, p):
         """
@@ -61,14 +59,14 @@ class MatrixParser:
                  | ACCESS
         """
         p[0] = ast.Variable(p[1])
-        print('p_variable: {}'.format(p[0]))
+        #print('p_variable: {}'.format(p[0]))
 
     def p_access(self, p):
         """
         ACCESS : ID LBRACKET SEQUENCE RBRACKET
         """
         p[0] = ast.Access(p[1], p[3])
-        print('p_access: {}'.format(p[0]))
+        #print('p_access: {}'.format(p[0]))
 
     def p_sequence(self, p):
         """
@@ -76,11 +74,10 @@ class MatrixParser:
                  | EXPRESSION
         """
         if len(p) == 2:
-            p[0] = [p[1]]
+            p[0] = ast.Instruction(p[1])
         elif len(p) == 4:
-            p[1].append(p[3])
-            p[0] = p[1]
-        print('p_sequence: {}'.format(p[0]))
+            p[0] = ast.Sequence(p[1],p[3]) ## nie wiem
+        #print('p_sequence: {}'.format(p[0]))
 
     def p_value(self, p):
         """
@@ -91,27 +88,28 @@ class MatrixParser:
               | MATRIX
               | ACCESS
         """
-        p[0] = p[1]
-        print('p_value: {}'.format(p[0]))
+
+        p[0] = ast.Value(p[1])
+        #print('p_value: {}'.format(p[0]))
 
     def p_matrix(self, p):
         """
         MATRIX : LBRACKET ROWS RBRACKET
         """
-        p[0] = p[2]
-        print('p_matrix: {}'.format(p[0]))
+        p[0] = ast.MatrixInitializer(p[2])
+        #print('p_matrix: {}'.format(p[0]))
 
     def p_rows(self, p):
         """
         ROWS : ROWS SEMICOLON SEQUENCE
              | SEQUENCE
         """
+        p[0] = ast.Rows()
         if len(p) == 2:
-            p[0] = [p[1]]
+            p[0].append_row(p[1])
         elif len(p) == 4:
-            p[1].append(p[3])
-            p[0] = p[1]
-        print('p_rows: {}'.format(p[0]))
+            p[0].cons_row(p[1].row_list, p[3])
+        #print('p_rows: {}'.format(p[0]))
 
     def p_expression(self, p):
         """
@@ -122,6 +120,7 @@ class MatrixParser:
                    | EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
                    | FUNCTION LPAREN EXPRESSION RPAREN
         """
+
         if len(p) == 2:
             p[0] = p[1]
         elif len(p) == 3 and p[1] == '-':
@@ -134,7 +133,7 @@ class MatrixParser:
             p[0] = ast.Function(p[1], p[3])
         elif len(p) == 4:
             p[0] = ast.BinaryExpression(p[1], p[2], p[3])
-        print('p_expression: {}'.format(p[0]))
+        #print('p_expression: {}'.format(p[0]))
 
     def p_keyword(self, p):
         """KEYWORD : PRINT SEQUENCE
@@ -149,21 +148,21 @@ class MatrixParser:
             p[0] = ast.Break()
         elif p[1] == 'continue':
             p[0] = ast.Continue()
-        print('p_keyword: {}'.format(p[0]))
+        #print('p_keyword: {}'.format(p[0]))
 
     def p_relation(self, p):
         """RELATION : EXPRESSION COMPARISION_OPERATOR EXPRESSION"""
-        p[0] = ast.Relation(p[1], p[2], p[3])
-        print('p_relation: {}'.format(p[0]))
+        p[0] = ast.BinaryExpression(p[1], p[2], p[3])
+        #print('p_relation: {}'.format(p[0]))
 
     def p_body(self, p):
         """BODY : LCURLY PROGRAM RCURLY
                 | INSTRUCTION"""
         if len(p) == 2:
-            p[0] = [p[1]]
+            p[0] = ast.Instruction(p[1])
         elif len(p) == 4:
-            p[0] = p[2]
-        print('p_body: {}'.format(p[0]))
+            p[0] = ast.Instruction(p[2])
+        #print('p_body: {}'.format(p[0]))
 
     def p_if_statement(self, p):
         """IF_STATEMENT : IF LPAREN RELATION RPAREN BODY
@@ -172,17 +171,17 @@ class MatrixParser:
             p[0] = ast.If(p[3], p[5], p[7])
         elif len(p) == 6:
             p[0] = ast.If(p[3], p[5])
-        print('p_if_statement: {}'.format(p[0]))
+        #print('p_if_statement: {}'.format(p[0]))
 
     def p_while_statement(self, p):
         """WHILE_STATEMENT : WHILE LPAREN RELATION RPAREN BODY"""
         p[0] = ast.While(p[3], p[5])
-        print('p_while_statement: {}'.format(p[0]))
+        #print('p_while_statement: {}'.format(p[0]))
 
     def p_for_statement(self, p):
         """FOR_STATEMENT : FOR ID ASSIGN RANGE BODY"""
         p[0] = ast.For(p[2], p[4], p[5])
-        print('p_for_statement: {}'.format(p[0]))
+        #print('p_for_statement: {}'.format(p[0]))
 
     def p_range(self, p):
         """RANGE : EXPRESSION COLON EXPRESSION
@@ -191,7 +190,7 @@ class MatrixParser:
             p[0] = ast.Range(p[1], p[3])
         elif len(p) == 6:
             p[0] = ast.Range(p[1], p[3], p[5])
-        print('p_range: {}'.format(p[0]))
+        #print('p_range: {}'.format(p[0]))
 
     def p_assignment_operator(self, p):
         """
@@ -202,7 +201,7 @@ class MatrixParser:
                             | DIVIDEASSIGN
         """
         p[0] = p[1]
-        print('p_assignment_operator: {}'.format(p[0]))
+        #print('p_assignment_operator: {}'.format(p[0]))
 
     def p_comparision_operator(self, p):
         """
@@ -214,7 +213,7 @@ class MatrixParser:
                              | MOREEQUAL
         """
         p[0] = p[1]
-        print('p_comparision_operator: {}'.format(p[0]))
+        #print('p_comparision_operator: {}'.format(p[0]))
 
     def p_mathematical_operator(self, p):
         """
@@ -228,7 +227,7 @@ class MatrixParser:
                               | MDIVIDE
         """
         p[0] = p[1]
-        print('p_mathematical_operator: {}'.format(p[0]))
+        #print('p_mathematical_operator: {}'.format(p[0]))
 
     def p_function(self, p):
         """
@@ -237,16 +236,16 @@ class MatrixParser:
                  | ONES
         """
         p[0] = p[1]
-        print('p_function: {}'.format(p[0]))
+        #print('p_function: {}'.format(p[0]))
 
     def p_error(self, p):
-        print('/' * 40 + 'ERROR\nIllegal symbol {}'.format(p.value) + '/' * 40)
+        print('/' * 40 + 'ERROR\nIllegal symbol {}\n'.format(p.value) + '/' * 40)
 
     def __init__(self):
         self.parser = None
+        self.matrix_lexer = MatrixLexer()
 
     def build(self, **kwargs):
-        self.matrix_lexer = MatrixLexer()
         self.parser = yacc.yacc(module=self)
 
     def run(self, s, **kwargs):
@@ -254,3 +253,5 @@ class MatrixParser:
         self.matrix_lexer.run(s, **kwargs)
         self.matrix_lexer.print_result()
         self.parser.parse(s, lexer=self.matrix_lexer.lexer)
+
+

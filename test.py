@@ -1,7 +1,7 @@
 import unittest 
 import re 
 
-from matrix_lexer import MatrixLexer
+from kompilatory.matrix_lexer import MatrixLexer
 
 def normalize(output):
   return list(

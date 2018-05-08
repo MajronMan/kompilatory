@@ -16,6 +16,17 @@ class ColumnCounter:
 
 
 class MatrixLexer:
+
+    def __init__(self) -> None:
+        self.lexer = lex.lex(object=self)
+        self.result = []
+
+    def input(self, text):
+        self.lexer.input(text)
+
+    def token(self):
+        return self.lexer.token()
+
     reserved = {
         'if': 'IF',
         'else': 'ELSE',
@@ -125,12 +136,12 @@ class MatrixLexer:
               (t.value[0], t.lineno, ColumnCounter.get_column(t)))
         t.lexer.skip(1)
 
-    def __init__(self):
-        self.lexer = None
-        self.result = []
-
-    def build(self, **kwargs):
-        self.lexer = lex.lex(module=self, **kwargs)
+    # def __init__(self):
+    #     self.lexer = None
+    #     self.result = []
+    #
+    # def build(self, **kwargs):
+    #     self.lexer = lex.lex(module=self, **kwargs)
 
     def show_token(self, token):
         return "(%d, %d): %s(%s)" % (

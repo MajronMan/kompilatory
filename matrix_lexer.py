@@ -10,6 +10,10 @@ class ColumnCounter:
         return t.lexpos - ColumnCounter.newlines[t.lineno - 1]
 
     @staticmethod
+    def get_position(t):
+        return t.lineno, ColumnCounter.get_column(t)
+
+    @staticmethod
     def add_newline(t):
         for i in range(len(t.value)):
             ColumnCounter.newlines.append(t.lexpos + i)
@@ -135,13 +139,6 @@ class MatrixLexer:
         print("illegal character '%s' at (%d, %d)" %
               (t.value[0], t.lineno, ColumnCounter.get_column(t)))
         t.lexer.skip(1)
-
-    # def __init__(self):
-    #     self.lexer = None
-    #     self.result = []
-    #
-    # def build(self, **kwargs):
-    #     self.lexer = lex.lex(module=self, **kwargs)
 
     def show_token(self, token):
         return "(%d, %d): %s(%s)" % (

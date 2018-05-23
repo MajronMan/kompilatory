@@ -3,6 +3,7 @@ from matrix_lexer import MatrixLexer
 from errors import *
 from ast import *
 
+
 class NodeVisitor:
     def __init__(self):
         self.namespace = dict()
@@ -27,7 +28,6 @@ class TypeChecker(NodeVisitor):
         self.visit(node.line)
 
     def visit_Assignment(self, node):
-        self.visit(node.right)
         if node.operator == MatrixLexer.t_ASSIGN:
             self.namespace[node.left.name] = node.right
         else:
@@ -42,14 +42,14 @@ class TypeChecker(NodeVisitor):
 
     def visit_Variable(self, node):
         if node.name not in self.namespace:
-            self.errors.append(InvalidNameError(node.name))
+            self.errors.append(InvalidNameError(node.name, node.position))
 
     def visit_Value(self, node):
         pass
 
     def visit_UnaryExpression(self, node):
         if type(node.operand) is Variable and node.operand.name not in self.namespace:
-            self.errors.append(InvalidNameError(node.name))
+            self.errors.append(InvalidNameError(node.name, node.position))
 
     def visit_Transposition(self, node):
         self.visit_UnaryExpression(node)
@@ -64,15 +64,15 @@ class TypeChecker(NodeVisitor):
 
     def visit_Break(self, node):
         if self.loop == 0:
-            self.errors.append(StatementNotAllowetOutsideLoopError("break"))
+            self.errors.append(StatementNotAllowetOutsideLoopError("break", node.position))
 
     def visit_Continue(self, node):
         if self.loop == 0:
-            self.errors.append(StatementNotAllowetOutsideLoopError("continue"))
+            self.errors.append(StatementNotAllowetOutsideLoopError("continue", node.position))
 
     def visit_Return(self, node):
         if self.loop == 0:
-            self.errors.append(StatementNotAllowetOutsideLoopError("return"))
+            self.errors.append(StatementNotAllowetOutsideLoopError("return", node.position))
 
     def visit_Print(self, node):
         self.visit_Sequence(node.expression)
@@ -83,7 +83,7 @@ class TypeChecker(NodeVisitor):
 
     def visit_Range(self, node):
         if type(node.start) is int and type(node.end) is int and node.start.primitive > node.end.primitive:
-            self.errors.append(InvalidRangeError())
+            self.errors.append(InvalidRangeError(node.position))
 
     def visit_If(self, node):
         self.loop += 1

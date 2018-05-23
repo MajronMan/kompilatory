@@ -2,31 +2,36 @@ import ast
 import ply.yacc as yacc
 
 from matrix_lexer import MatrixLexer
+
+
 class MatrixParser:
     tokens = MatrixLexer.tokens
 
     precedence = (
-        ('nonassoc', 'LESS', 'MORE', 'LESSEQUAL', 'MOREEQUAL', 'IF', 'ELSE'),
-        ('left', 'PLUS', 'MINUS'),
-        ('left', 'TIMES', 'DIVIDE'),
-        ('right', 'UMINUS')
+        ('nonassoc', 'IF'),
+        ('nonassoc', 'LESS', 'MORE', 'LESSEQUAL', 'MOREEQUAL', 'ELSE'),
+        ('left', 'PLUS', 'MINUS', 'MPLUS', 'MMINUS'),
+        ('left', 'TIMES', 'DIVIDE', 'MTIMES', 'MDIVIDE'),
+        ('right', 'UMINUS'),
+        ('nonassoc', 'TRANSPOSE')
     )
 
     def p_start(self, p):
         """start : PROGRAM"""
         p[0] = ast.Start(p[1])
-        #print('p_start: {}'.format(p[0]))
 
     def p_program(self, p):
         """
         PROGRAM : PROGRAM INSTRUCTION
-                | INSTRUCTION
         """
-        if len(p) == 2:
-            p[0] = ast.Instruction(p[1])
-        elif len(p) == 3:
-            p[0] = ast.Instructions(p[1], p[2])
-        #print('p_program: {}'.format(p[0]))
+        p[1].instructions.append(p[2])
+        p[0] = p[1]
+
+    def p_program_inst(self, p):
+        """
+        PROGRAM : INSTRUCTION
+        """
+        p[0] = ast.Program(p[1])
 
     def p_instruction(self, p):
         """
@@ -36,22 +41,19 @@ class MatrixParser:
                     | FOR_STATEMENT
         """
         p[0] = ast.Instruction(p[1])
-        #print('p_instruction: {}'.format(p[0]))
 
     def p_statement(self, p):
         """
         STATEMENT : ASSIGNMENT
                   | KEYWORD
         """
-        p[0] = ast.Instruction(p[1]) ## ??
-        #print('p_statement: {}'.format(p[0]))
+        p[0] = ast.Instruction(p[1])
 
     def p_assignment(self, p):
         """
         ASSIGNMENT : VARIABLE ASSIGNMENT_OPERATOR EXPRESSION
         """
         p[0] = ast.Assignment(p[1], p[2], p[3])
-        #print('p_assignment: {}'.format(p[0]))
 
     def p_variable(self, p):
         """
@@ -59,25 +61,25 @@ class MatrixParser:
                  | ACCESS
         """
         p[0] = ast.Variable(p[1])
-        #print('p_variable: {}'.format(p[0]))
 
     def p_access(self, p):
         """
         ACCESS : ID LBRACKET SEQUENCE RBRACKET
         """
         p[0] = ast.Access(p[1], p[3])
-        #print('p_access: {}'.format(p[0]))
 
     def p_sequence(self, p):
         """
-        SEQUENCE : SEQUENCE COMMA EXPRESSION
-                 | EXPRESSION
+        SEQUENCE : SEQUENCE COMMA EXPRESSION                
         """
-        if len(p) == 2:
-            p[0] = ast.Instruction(p[1])
-        elif len(p) == 4:
-            p[0] = ast.Sequence(p[1],p[3]) ## nie wiem
-        #print('p_sequence: {}'.format(p[0]))
+        p[1].expressions.append(p[3])
+        p[0] = p[1]
+
+    def p_sequence_last(self, p):
+        """
+        SEQUENCE : EXPRESSION
+        """
+        p[0] = ast.Sequence(p[1])
 
     def p_value(self, p):
         """
@@ -90,107 +92,140 @@ class MatrixParser:
         """
 
         p[0] = ast.Value(p[1])
-        #print('p_value: {}'.format(p[0]))
 
     def p_matrix(self, p):
         """
         MATRIX : LBRACKET ROWS RBRACKET
         """
         p[0] = ast.MatrixInitializer(p[2])
-        #print('p_matrix: {}'.format(p[0]))
 
     def p_rows(self, p):
         """
         ROWS : ROWS SEMICOLON SEQUENCE
-             | SEQUENCE
         """
-        p[0] = ast.Rows()
-        if len(p) == 2:
-            p[0].append_row(p[1])
-        elif len(p) == 4:
-            p[0].cons_row(p[1].row_list, p[3])
-        #print('p_rows: {}'.format(p[0]))
+        p[1].row_list.append(p[3])
+        p[0] = p[1]
 
-    def p_expression(self, p):
+    def p_row(self, p):
+        """
+        ROWS : SEQUENCE
+        """
+        p[0] = ast.Rows(p[1])
+
+    def p_expression_value(self, p):
         """
         EXPRESSION : VALUE
-                   | MINUS EXPRESSION %prec UMINUS
-                   | EXPRESSION TRANSPOSE
-                   | LPAREN EXPRESSION RPAREN
-                   | EXPRESSION MATHEMATICAL_OPERATOR EXPRESSION
-                   | FUNCTION LPAREN EXPRESSION RPAREN
         """
+        p[0] = p[1]
 
-        if len(p) == 2:
-            p[0] = p[1]
-        elif len(p) == 3 and p[1] == '-':
-            p[0] = ast.Negation(p[2])
-        elif len(p) == 3 and p[2] == '\'':
-            p[0] = ast.Transposition(p[1])
-        elif len(p) == 4 and p[1] == '(' and p[3] == ')':
-            p[0] = p[2]
-        elif len(p) == 5 and p[2] == '(' and p[4] == ')':
-            p[0] = ast.Function(p[1], p[3])
-        elif len(p) == 4:
-            p[0] = ast.BinaryExpression(p[1], p[2], p[3])
-        #print('p_expression: {}'.format(p[0]))
+    def p_expression_minus(self, p):
+        """
+        EXPRESSION : MINUS EXPRESSION %prec UMINUS
+        """
+        p[0] = ast.Negation(p[2])
 
-    def p_keyword(self, p):
-        """KEYWORD : PRINT SEQUENCE
-                   | BREAK
-                   | CONTINUE
-                   | RETURN EXPRESSION"""
-        if p[1] == 'print':
-            p[0] = ast.Print(p[2])
-        elif p[1] == 'return':
-            p[0] = ast.Return(p[2])
-        elif p[1] == 'break':
-            p[0] = ast.Break()
-        elif p[1] == 'continue':
-            p[0] = ast.Continue()
-        #print('p_keyword: {}'.format(p[0]))
+    def p_id_transpose(self, p):
+        """
+        EXPRESSION : ID TRANSPOSE
+        """
+        p[0] = ast.Transposition(ast.Variable(p[1]))
+
+    def p_expression_transpose(self, p):
+        """
+        EXPRESSION : LPAREN EXPRESSION RPAREN TRANSPOSE
+        """
+        p[0] = ast.Transposition(p[2])
+
+    def p_expression_paren(self, p):
+        """
+        EXPRESSION : LPAREN EXPRESSION RPAREN
+        """
+        p[0] = p[2]
+
+    def p_expression_math(self, p):
+        """
+        EXPRESSION : EXPRESSION PLUS EXPRESSION
+                   | EXPRESSION MINUS EXPRESSION
+                   | EXPRESSION TIMES EXPRESSION
+                   | EXPRESSION DIVIDE EXPRESSION
+                   | EXPRESSION MPLUS EXPRESSION
+                   | EXPRESSION MMINUS EXPRESSION
+                   | EXPRESSION MTIMES EXPRESSION
+                   | EXPRESSION MDIVIDE EXPRESSION
+        """
+        p[0] = ast.BinaryExpression(p[1], p[2], p[3])
+
+    def p_expression_fun(self, p):
+        """
+        EXPRESSION : FUNCTION LPAREN EXPRESSION RPAREN
+        """
+        p[0] = ast.Function(p[1], p[3])
+
+    def p_keyword_print(self, p):
+        """
+        KEYWORD : PRINT SEQUENCE
+        """
+        p[0] = ast.Print(p[2])
+
+    def p_keyword_break(self, p):
+        """
+        KEYWORD : BREAK
+        """
+        p[0] = ast.Break()
+
+    def p_keyword_continue(self, p):
+        """
+        KEYWORD : CONTINUE
+        """
+        p[0] = ast.Continue()
+
+    def p_keyword_return(self, p):
+        """
+        KEYWORD : RETURN
+        """
+        p[0] = ast.Return(p[2])
 
     def p_relation(self, p):
         """RELATION : EXPRESSION COMPARISION_OPERATOR EXPRESSION"""
         p[0] = ast.BinaryExpression(p[1], p[2], p[3])
-        #print('p_relation: {}'.format(p[0]))
 
     def p_body(self, p):
-        """BODY : LCURLY PROGRAM RCURLY
-                | INSTRUCTION"""
-        if len(p) == 2:
-            p[0] = ast.Instruction(p[1])
-        elif len(p) == 4:
-            p[0] = ast.Instruction(p[2])
-        #print('p_body: {}'.format(p[0]))
+        """BODY : INSTRUCTION"""
+        p[0] = ast.Instruction(p[1])
+
+    def p_body_curly(self, p):
+        """BODY : LCURLY PROGRAM RCURLY"""
+        p[0] = ast.Instruction(p[2])
 
     def p_if_statement(self, p):
-        """IF_STATEMENT : IF LPAREN RELATION RPAREN BODY
-                        | IF LPAREN RELATION RPAREN BODY ELSE BODY"""
-        if len(p) == 8:
-            p[0] = ast.If(p[3], p[5], p[7])
-        elif len(p) == 6:
-            p[0] = ast.If(p[3], p[5])
-        #print('p_if_statement: {}'.format(p[0]))
+        """
+        IF_STATEMENT : IF LPAREN RELATION RPAREN BODY %prec IF
+        """
+        p[0] = ast.If(p[3], p[5])
+
+    def p_if_else_statement(self, p):
+        """
+        IF_STATEMENT : IF LPAREN RELATION RPAREN BODY ELSE BODY
+        """
+        p[0] = ast.If(p[3], p[5], p[7])
 
     def p_while_statement(self, p):
         """WHILE_STATEMENT : WHILE LPAREN RELATION RPAREN BODY"""
         p[0] = ast.While(p[3], p[5])
-        #print('p_while_statement: {}'.format(p[0]))
 
     def p_for_statement(self, p):
         """FOR_STATEMENT : FOR ID ASSIGN RANGE BODY"""
         p[0] = ast.For(p[2], p[4], p[5])
-        #print('p_for_statement: {}'.format(p[0]))
 
     def p_range(self, p):
-        """RANGE : EXPRESSION COLON EXPRESSION
-                 | EXPRESSION COLON EXPRESSION COLON EXPRESSION"""
-        if len(p) == 4:
-            p[0] = ast.Range(p[1], p[3])
-        elif len(p) == 6:
-            p[0] = ast.Range(p[1], p[3], p[5])
-        #print('p_range: {}'.format(p[0]))
+        """RANGE : EXPRESSION COLON EXPRESSION"""
+        p[0] = ast.Range(p[1], p[3])
+
+    def p_range_step(self, p):
+        """
+         RANGE : EXPRESSION COLON EXPRESSION COLON EXPRESSION
+        """
+        p[0] = ast.Range(p[1], p[3], p[5])
 
     def p_assignment_operator(self, p):
         """
@@ -201,7 +236,6 @@ class MatrixParser:
                             | DIVIDEASSIGN
         """
         p[0] = p[1]
-        #print('p_assignment_operator: {}'.format(p[0]))
 
     def p_comparision_operator(self, p):
         """
@@ -213,21 +247,6 @@ class MatrixParser:
                              | MOREEQUAL
         """
         p[0] = p[1]
-        #print('p_comparision_operator: {}'.format(p[0]))
-
-    def p_mathematical_operator(self, p):
-        """
-        MATHEMATICAL_OPERATOR : PLUS
-                              | MINUS
-                              | TIMES
-                              | DIVIDE
-                              | MPLUS
-                              | MMINUS
-                              | MTIMES
-                              | MDIVIDE
-        """
-        p[0] = p[1]
-        #print('p_mathematical_operator: {}'.format(p[0]))
 
     def p_function(self, p):
         """
@@ -236,7 +255,6 @@ class MatrixParser:
                  | ONES
         """
         p[0] = p[1]
-        #print('p_function: {}'.format(p[0]))
 
     def p_error(self, p):
         print('/' * 40 + 'ERROR\nIllegal symbol {}\n'.format(p.value) + '/' * 40)
@@ -253,5 +271,3 @@ class MatrixParser:
         self.matrix_lexer.run(s, **kwargs)
         self.matrix_lexer.print_result()
         self.parser.parse(s, lexer=self.matrix_lexer.lexer)
-
-

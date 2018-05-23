@@ -1,8 +1,8 @@
 import sys
 import ply.yacc as yacc
+import TreePrinter
 
 from matrix_parser import MatrixParser
-from treePrinter import TreePrinter
 
 if __name__ == '__main__':
     try:

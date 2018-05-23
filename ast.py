@@ -1,6 +1,5 @@
-class Node(object):
-    def __init__(self, instructions):
-        self.instructions = instructions
+class Node:
+    pass
 
 
 class BinaryExpression(Node):
@@ -133,49 +132,51 @@ class Access(Node):
 
 
 class Error(Node):
-    def __init__(self):
-        pass
+    pass
 
 
-class Instructions(Node):
-    def __init__(self, instructions, instruction):
-        self.instructions = instructions
-        self.instruction = instruction
+class Program(Node):
+    def __init__(self, instruction):
+        self.instructions = [instruction]
 
 
 class Start(Node):
-    def __init__(self, instructions):
-        self.instructions = instructions
+    def __init__(self, program):
+        self.program = program
 
 
 class Instruction(Node):
-    def __init__(self, instruction):
-        self.instruction = instruction
+    def __init__(self, line):
+        self.line = line
 
 
 class MatrixInitializer(Node):
-    def __init__(self, instruction):
-        self.instruction = instruction
-
-
-class Rows(Node):
-    def __init__(self):
-        self.row_list = []
-
-    def append_row(self, a):
-        self.row_list.append(a)
-
-    def cons_row(self, row_list, a):
-        self.row_list = list(row_list)
-        self.row_list.append(a)
-
-
-class Value(Node):
     def __init__(self, value):
         self.value = value
 
+    def __repr__(self):
+        return str(self.value)
+
+
+class Value(Node):
+    def __init__(self, primitive):
+        self.primitive = primitive
+
+    def __repr__(self):
+        return "{}({})".format(type(self.primitive).__name__, self.primitive)
+
+
+class Rows(Node):
+    def __init__(self, sequence):
+        self.row_list = [sequence]
+
+    def __repr__(self):
+        return "[" + ", ".join(map(str, self.row_list)) + "]"
+
 
 class Sequence(Node):
-    def __init__(self, sequence, expression):
-        self.sequence = sequence
-        self.expression = expression
+    def __init__(self, expression):
+        self.expressions = [expression]
+
+    def __repr__(self):
+        return "{}".format(self.expressions)

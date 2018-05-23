@@ -29,27 +29,7 @@ class TreePrinter:
     def printTree(self, indent=0):
         res = ""
         res += indent * separator + str(self.operator) + '\n'
-        res += self.expression.printTree(indent + 1)
-        return res
-
-    @addToClass(ast.Negation)
-    def printTree(self, indent=0):
-        res = indent * separator + "Negation\n"
         res += self.operand.printTree(indent + 1)
-        return res
-
-    @addToClass(ast.Transposition)
-    def printTree(self, indent=0):
-        res = indent * separator + "Transposition\n"
-        res += self.operand.printTree(indent + 1)
-        return res
-
-    @addToClass(ast.Assignment)
-    def printTree(self, indent=0):
-        res = indent * separator + str(self.operator) + '\n'
-        res += self.left.printTree(indent + 1)
-        res += self.right.printTree(indent + 1)
-
         return res
 
     @addToClass(ast.Function)
@@ -60,8 +40,6 @@ class TreePrinter:
 
     @addToClass(ast.Variable)
     def printTree(self, indent=0):
-        if issubclass(type(self.name), ast.Node):
-            return self.name.printTree(indent)
         return indent * separator + str(self.name) + '\n'
 
     @addToClass(ast.If)
@@ -70,7 +48,7 @@ class TreePrinter:
         res += self.condition.printTree(indent + 1)
         res += indent * separator + "THEN\n"
         res += self.expression.printTree(indent + 1)
-        if (self.else_expression != None):
+        if self.else_expression is not None:
             res += indent * separator + "ELSE\n"
             res += self.else_expression.printTree(indent + 1)
         return res
@@ -84,9 +62,10 @@ class TreePrinter:
 
     @addToClass(ast.Range)
     def printTree(self, indent=0):
-        res = indent * separator + "RANGE\n"
-        res += self.start.printTree(indent + 1)
-        res += self.end.printTree(indent + 1)
+        res = indent * separator + "["
+        res += str(self.start) + ":"
+        res += str(self.end) + ":"
+        res += str(self.step) + "]\n"
         return res
 
     @addToClass(ast.For)
@@ -129,33 +108,26 @@ class TreePrinter:
     def printTree(self, indent=0):
         return indent * separator + " Error\n"
 
-    @addToClass(ast.Instructions)
+    @addToClass(ast.Program)
     def printTree(self, indent=0):
         res = ""
-        if self.instructions:
-            res += self.instructions.printTree(indent)
-        res += self.instruction.printTree(indent)
+        for instruction in self.instructions:
+            res += instruction.printTree(indent)
         return res
 
     @addToClass(ast.Start)
     def printTree(self, indent=0):
-        return self.instructions.printTree(indent)
+        return self.program.printTree(indent)
 
     @addToClass(ast.Instruction)
     def printTree(self, indent=0):
-        return self.instruction.printTree(indent)
+        return self.line.printTree(indent)
 
     @addToClass(ast.MatrixInitializer)
     def printTree(self, indent=0):
         res = indent * separator + 'MATRIX\n'
-        res += self.instruction.printTree(indent + 1)
+        res += self.value.printTree(indent + 1)
         return res
-
-    @addToClass(ast.Value)
-    def printTree(self, indent=0):
-        if issubclass(type(self.value), ast.Node):
-            return self.value.printTree(indent)
-        return indent * separator + str(self.value) + '\n'
 
     @addToClass(ast.Rows)
     def printTree(self, indent=0):
@@ -167,7 +139,11 @@ class TreePrinter:
 
     @addToClass(ast.Sequence)
     def printTree(self, indent=0):
-        res = self.sequence.printTree(indent)
-        res += self.expression.printTree(indent)
-
+        res = ""
+        for expression in self.expressions:
+            res = expression.printTree(indent)
         return res
+
+    @addToClass(ast.Value)
+    def printTree(self, indent=0):
+        return indent * separator + str(self.primitive) + "\n"

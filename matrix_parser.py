@@ -183,7 +183,7 @@ class MatrixParser:
         """
         KEYWORD : RETURN
         """
-        p[0] = ast.Return(p[2])
+        p[0] = ast.Return(p[1])
 
     def p_relation(self, p):
         """RELATION : EXPRESSION COMPARISION_OPERATOR EXPRESSION"""

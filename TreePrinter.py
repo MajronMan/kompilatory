@@ -123,7 +123,7 @@ class TreePrinter:
     def printTree(self, indent=0):
         return self.line.printTree(indent)
 
-    @addToClass(ast.MatrixInitializer)
+    @addToClass(ast.Matrix)
     def printTree(self, indent=0):
         res = indent * separator + 'MATRIX\n'
         res += self.value.printTree(indent + 1)

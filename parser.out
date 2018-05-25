@@ -41,80 +41,81 @@ Rule 35    expression -> expression MMINUS expression
 Rule 36    expression -> expression MTIMES expression
 Rule 37    expression -> expression MDIVIDE expression
 Rule 38    expression -> function LPAREN expression RPAREN
-Rule 39    keyword -> PRINT sequence
-Rule 40    keyword -> BREAK
-Rule 41    keyword -> CONTINUE
-Rule 42    keyword -> RETURN
-Rule 43    relation -> expression comparison_operator expression
-Rule 44    body -> instruction
-Rule 45    body -> LCURLY program RCURLY
-Rule 46    if_statement -> IF LPAREN relation RPAREN body
-Rule 47    if_statement -> IF LPAREN relation RPAREN body ELSE body
-Rule 48    while_statement -> WHILE LPAREN relation RPAREN body
-Rule 49    for_statement -> FOR ID ASSIGN range body
-Rule 50    range -> expression COLON expression
-Rule 51    range -> expression COLON expression COLON expression
-Rule 52    assignment_operator -> ASSIGN
-Rule 53    assignment_operator -> PLUSASSIGN
-Rule 54    assignment_operator -> MINUSASSIGN
-Rule 55    assignment_operator -> TIMESASSIGN
-Rule 56    assignment_operator -> DIVIDEASSIGN
-Rule 57    comparison_operator -> LESS
-Rule 58    comparison_operator -> MORE
-Rule 59    comparison_operator -> EQUAL
-Rule 60    comparison_operator -> INEQUAL
-Rule 61    comparison_operator -> LESSEQUAL
-Rule 62    comparison_operator -> MOREEQUAL
-Rule 63    function -> EYE
-Rule 64    function -> ZEROS
-Rule 65    function -> ONES
+Rule 39    expression -> function LPAREN sequence RPAREN
+Rule 40    keyword -> PRINT sequence
+Rule 41    keyword -> BREAK
+Rule 42    keyword -> CONTINUE
+Rule 43    keyword -> RETURN
+Rule 44    relation -> expression comparison_operator expression
+Rule 45    body -> instruction
+Rule 46    body -> LCURLY program RCURLY
+Rule 47    if_statement -> IF LPAREN relation RPAREN body
+Rule 48    if_statement -> IF LPAREN relation RPAREN body ELSE body
+Rule 49    while_statement -> WHILE LPAREN relation RPAREN body
+Rule 50    for_statement -> FOR ID ASSIGN range body
+Rule 51    range -> expression COLON expression
+Rule 52    range -> expression COLON expression COLON expression
+Rule 53    assignment_operator -> ASSIGN
+Rule 54    assignment_operator -> PLUSASSIGN
+Rule 55    assignment_operator -> MINUSASSIGN
+Rule 56    assignment_operator -> TIMESASSIGN
+Rule 57    assignment_operator -> DIVIDEASSIGN
+Rule 58    comparison_operator -> LESS
+Rule 59    comparison_operator -> MORE
+Rule 60    comparison_operator -> EQUAL
+Rule 61    comparison_operator -> INEQUAL
+Rule 62    comparison_operator -> LESSEQUAL
+Rule 63    comparison_operator -> MOREEQUAL
+Rule 64    function -> EYE
+Rule 65    function -> ZEROS
+Rule 66    function -> ONES
 
 Terminals, with rules where they appear
 
-ASSIGN               : 49 52
-BREAK                : 40
-COLON                : 50 51 51
+ASSIGN               : 50 53
+BREAK                : 41
+COLON                : 51 52 52
 COMMA                : 14
-CONTINUE             : 41
+CONTINUE             : 42
 DIVIDE               : 33
-DIVIDEASSIGN         : 56
-ELSE                 : 47
-EQUAL                : 59
-EYE                  : 63
+DIVIDEASSIGN         : 57
+ELSE                 : 48
+EQUAL                : 60
+EYE                  : 64
 FLOAT                : 16
-FOR                  : 49
-ID                   : 11 13 25 27 49
-IF                   : 46 47
-INEQUAL              : 60
+FOR                  : 50
+ID                   : 11 13 25 27 50
+IF                   : 47 48
+INEQUAL              : 61
 INT                  : 17
 LBRACKET             : 13 21
-LCURLY               : 45
-LESS                 : 57
-LESSEQUAL            : 61
-LPAREN               : 28 29 38 46 47 48
+LCURLY               : 46
+LESS                 : 58
+LESSEQUAL            : 62
+LPAREN               : 28 29 38 39 47 48 49
 MDIVIDE              : 37
 MINUS                : 26 31
-MINUSASSIGN          : 54
+MINUSASSIGN          : 55
 MMINUS               : 35
-MORE                 : 58
-MOREEQUAL            : 62
+MORE                 : 59
+MOREEQUAL            : 63
 MPLUS                : 34
 MTIMES               : 36
-ONES                 : 65
+ONES                 : 66
 PLUS                 : 30
-PLUSASSIGN           : 53
-PRINT                : 39
+PLUSASSIGN           : 54
+PRINT                : 40
 RBRACKET             : 13 21
-RCURLY               : 45
-RETURN               : 42
-RPAREN               : 28 29 38 46 47 48
+RCURLY               : 46
+RETURN               : 43
+RPAREN               : 28 29 38 39 47 48 49
 SEMICOLON            : 4 22
 STRING               : 18
 TIMES                : 32
-TIMESASSIGN          : 55
+TIMESASSIGN          : 56
 TRANSPOSE            : 27 28
-WHILE                : 48
-ZEROS                : 64
+WHILE                : 49
+ZEROS                : 65
 error                : 
 
 Nonterminals, with rules where they appear
@@ -122,20 +123,20 @@ Nonterminals, with rules where they appear
 access               : 12 20
 assignment           : 8
 assignment_operator  : 10
-body                 : 46 47 47 48 49
-comparison_operator  : 43
-expression           : 10 14 15 26 28 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 43 43 50 50 51 51 51
+body                 : 47 48 48 49 50
+comparison_operator  : 44
+expression           : 10 14 15 26 28 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 44 44 51 51 52 52 52
 for_statement        : 7
-function             : 38
+function             : 38 39
 if_statement         : 5
-instruction          : 2 3 44
+instruction          : 2 3 45
 keyword              : 9
 matrix               : 19
-program              : 1 2 45
-range                : 49
-relation             : 46 47 48
+program              : 1 2 46
+range                : 50
+relation             : 47 48 49
 rows                 : 21 22
-sequence             : 13 14 22 23 39
+sequence             : 13 14 22 23 39 40
 start                : 0
 statement            : 4
 value                : 24
@@ -156,15 +157,15 @@ state 0
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
@@ -206,15 +207,15 @@ state 2
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
@@ -329,22 +330,22 @@ state 9
 
 state 10
 
-    (46) if_statement -> IF . LPAREN relation RPAREN body
-    (47) if_statement -> IF . LPAREN relation RPAREN body ELSE body
+    (47) if_statement -> IF . LPAREN relation RPAREN body
+    (48) if_statement -> IF . LPAREN relation RPAREN body ELSE body
 
     LPAREN          shift and go to state 22
 
 
 state 11
 
-    (48) while_statement -> WHILE . LPAREN relation RPAREN body
+    (49) while_statement -> WHILE . LPAREN relation RPAREN body
 
     LPAREN          shift and go to state 23
 
 
 state 12
 
-    (49) for_statement -> FOR . ID ASSIGN range body
+    (50) for_statement -> FOR . ID ASSIGN range body
 
     ID              shift and go to state 24
 
@@ -365,11 +366,11 @@ state 13
 state 14
 
     (10) assignment -> variable . assignment_operator expression
-    (52) assignment_operator -> . ASSIGN
-    (53) assignment_operator -> . PLUSASSIGN
-    (54) assignment_operator -> . MINUSASSIGN
-    (55) assignment_operator -> . TIMESASSIGN
-    (56) assignment_operator -> . DIVIDEASSIGN
+    (53) assignment_operator -> . ASSIGN
+    (54) assignment_operator -> . PLUSASSIGN
+    (55) assignment_operator -> . MINUSASSIGN
+    (56) assignment_operator -> . TIMESASSIGN
+    (57) assignment_operator -> . DIVIDEASSIGN
 
     ASSIGN          shift and go to state 27
     PLUSASSIGN      shift and go to state 28
@@ -381,7 +382,7 @@ state 14
 
 state 15
 
-    (39) keyword -> PRINT . sequence
+    (40) keyword -> PRINT . sequence
     (14) sequence -> . sequence COMMA expression
     (15) sequence -> . expression
     (24) expression -> . value
@@ -399,14 +400,15 @@ state 15
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -430,23 +432,23 @@ state 15
 
 state 16
 
-    (40) keyword -> BREAK .
+    (41) keyword -> BREAK .
 
-    SEMICOLON       reduce using rule 40 (keyword -> BREAK .)
+    SEMICOLON       reduce using rule 41 (keyword -> BREAK .)
 
 
 state 17
 
-    (41) keyword -> CONTINUE .
+    (42) keyword -> CONTINUE .
 
-    SEMICOLON       reduce using rule 41 (keyword -> CONTINUE .)
+    SEMICOLON       reduce using rule 42 (keyword -> CONTINUE .)
 
 
 state 18
 
-    (42) keyword -> RETURN .
+    (43) keyword -> RETURN .
 
-    SEMICOLON       reduce using rule 42 (keyword -> RETURN .)
+    SEMICOLON       reduce using rule 43 (keyword -> RETURN .)
 
 
 state 19
@@ -495,9 +497,9 @@ state 21
 
 state 22
 
-    (46) if_statement -> IF LPAREN . relation RPAREN body
-    (47) if_statement -> IF LPAREN . relation RPAREN body ELSE body
-    (43) relation -> . expression comparison_operator expression
+    (47) if_statement -> IF LPAREN . relation RPAREN body
+    (48) if_statement -> IF LPAREN . relation RPAREN body ELSE body
+    (44) relation -> . expression comparison_operator expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -513,14 +515,15 @@ state 22
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -544,8 +547,8 @@ state 22
 
 state 23
 
-    (48) while_statement -> WHILE LPAREN . relation RPAREN body
-    (43) relation -> . expression comparison_operator expression
+    (49) while_statement -> WHILE LPAREN . relation RPAREN body
+    (44) relation -> . expression comparison_operator expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -561,14 +564,15 @@ state 23
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -592,7 +596,7 @@ state 23
 
 state 24
 
-    (49) for_statement -> FOR ID . ASSIGN range body
+    (50) for_statement -> FOR ID . ASSIGN range body
 
     ASSIGN          shift and go to state 51
 
@@ -617,14 +621,15 @@ state 25
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -664,14 +669,15 @@ state 26
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -694,90 +700,90 @@ state 26
 
 state 27
 
-    (52) assignment_operator -> ASSIGN .
+    (53) assignment_operator -> ASSIGN .
 
-    ID              reduce using rule 52 (assignment_operator -> ASSIGN .)
-    MINUS           reduce using rule 52 (assignment_operator -> ASSIGN .)
-    LPAREN          reduce using rule 52 (assignment_operator -> ASSIGN .)
-    FLOAT           reduce using rule 52 (assignment_operator -> ASSIGN .)
-    INT             reduce using rule 52 (assignment_operator -> ASSIGN .)
-    STRING          reduce using rule 52 (assignment_operator -> ASSIGN .)
-    EYE             reduce using rule 52 (assignment_operator -> ASSIGN .)
-    ZEROS           reduce using rule 52 (assignment_operator -> ASSIGN .)
-    ONES            reduce using rule 52 (assignment_operator -> ASSIGN .)
-    LBRACKET        reduce using rule 52 (assignment_operator -> ASSIGN .)
+    ID              reduce using rule 53 (assignment_operator -> ASSIGN .)
+    MINUS           reduce using rule 53 (assignment_operator -> ASSIGN .)
+    LPAREN          reduce using rule 53 (assignment_operator -> ASSIGN .)
+    FLOAT           reduce using rule 53 (assignment_operator -> ASSIGN .)
+    INT             reduce using rule 53 (assignment_operator -> ASSIGN .)
+    STRING          reduce using rule 53 (assignment_operator -> ASSIGN .)
+    EYE             reduce using rule 53 (assignment_operator -> ASSIGN .)
+    ZEROS           reduce using rule 53 (assignment_operator -> ASSIGN .)
+    ONES            reduce using rule 53 (assignment_operator -> ASSIGN .)
+    LBRACKET        reduce using rule 53 (assignment_operator -> ASSIGN .)
 
 
 state 28
 
-    (53) assignment_operator -> PLUSASSIGN .
+    (54) assignment_operator -> PLUSASSIGN .
 
-    ID              reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    MINUS           reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    LPAREN          reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    FLOAT           reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    INT             reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    STRING          reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    EYE             reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    ZEROS           reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    ONES            reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
-    LBRACKET        reduce using rule 53 (assignment_operator -> PLUSASSIGN .)
+    ID              reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    MINUS           reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    LPAREN          reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    FLOAT           reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    INT             reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    STRING          reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    EYE             reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    ZEROS           reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    ONES            reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
+    LBRACKET        reduce using rule 54 (assignment_operator -> PLUSASSIGN .)
 
 
 state 29
 
-    (54) assignment_operator -> MINUSASSIGN .
+    (55) assignment_operator -> MINUSASSIGN .
 
-    ID              reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    MINUS           reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    LPAREN          reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    FLOAT           reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    INT             reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    STRING          reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    EYE             reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    ZEROS           reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    ONES            reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
-    LBRACKET        reduce using rule 54 (assignment_operator -> MINUSASSIGN .)
+    ID              reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    MINUS           reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    LPAREN          reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    FLOAT           reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    INT             reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    STRING          reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    EYE             reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    ZEROS           reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    ONES            reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
+    LBRACKET        reduce using rule 55 (assignment_operator -> MINUSASSIGN .)
 
 
 state 30
 
-    (55) assignment_operator -> TIMESASSIGN .
+    (56) assignment_operator -> TIMESASSIGN .
 
-    ID              reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    MINUS           reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    LPAREN          reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    FLOAT           reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    INT             reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    STRING          reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    EYE             reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    ZEROS           reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    ONES            reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
-    LBRACKET        reduce using rule 55 (assignment_operator -> TIMESASSIGN .)
+    ID              reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    MINUS           reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    LPAREN          reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    FLOAT           reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    INT             reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    STRING          reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    EYE             reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    ZEROS           reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    ONES            reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
+    LBRACKET        reduce using rule 56 (assignment_operator -> TIMESASSIGN .)
 
 
 state 31
 
-    (56) assignment_operator -> DIVIDEASSIGN .
+    (57) assignment_operator -> DIVIDEASSIGN .
 
-    ID              reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    MINUS           reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    LPAREN          reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    FLOAT           reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    INT             reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    STRING          reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    EYE             reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    ZEROS           reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    ONES            reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
-    LBRACKET        reduce using rule 56 (assignment_operator -> DIVIDEASSIGN .)
+    ID              reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    MINUS           reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    LPAREN          reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    FLOAT           reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    INT             reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    STRING          reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    EYE             reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    ZEROS           reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    ONES            reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
+    LBRACKET        reduce using rule 57 (assignment_operator -> DIVIDEASSIGN .)
 
 
 state 32
 
-    (39) keyword -> PRINT sequence .
+    (40) keyword -> PRINT sequence .
     (14) sequence -> sequence . COMMA expression
 
-    SEMICOLON       reduce using rule 39 (keyword -> PRINT sequence .)
+    SEMICOLON       reduce using rule 40 (keyword -> PRINT sequence .)
     COMMA           shift and go to state 54
 
 
@@ -896,14 +902,15 @@ state 36
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -943,14 +950,15 @@ state 37
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -974,6 +982,7 @@ state 37
 state 38
 
     (38) expression -> function . LPAREN expression RPAREN
+    (39) expression -> function . LPAREN sequence RPAREN
 
     LPAREN          shift and go to state 66
 
@@ -1150,23 +1159,23 @@ state 43
 
 state 44
 
-    (63) function -> EYE .
+    (64) function -> EYE .
 
-    LPAREN          reduce using rule 63 (function -> EYE .)
+    LPAREN          reduce using rule 64 (function -> EYE .)
 
 
 state 45
 
-    (64) function -> ZEROS .
+    (65) function -> ZEROS .
 
-    LPAREN          reduce using rule 64 (function -> ZEROS .)
+    LPAREN          reduce using rule 65 (function -> ZEROS .)
 
 
 state 46
 
-    (65) function -> ONES .
+    (66) function -> ONES .
 
-    LPAREN          reduce using rule 65 (function -> ONES .)
+    LPAREN          reduce using rule 66 (function -> ONES .)
 
 
 state 47
@@ -1191,14 +1200,15 @@ state 47
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1223,15 +1233,15 @@ state 47
 
 state 48
 
-    (46) if_statement -> IF LPAREN relation . RPAREN body
-    (47) if_statement -> IF LPAREN relation . RPAREN body ELSE body
+    (47) if_statement -> IF LPAREN relation . RPAREN body
+    (48) if_statement -> IF LPAREN relation . RPAREN body ELSE body
 
     RPAREN          shift and go to state 69
 
 
 state 49
 
-    (43) relation -> expression . comparison_operator expression
+    (44) relation -> expression . comparison_operator expression
     (30) expression -> expression . PLUS expression
     (31) expression -> expression . MINUS expression
     (32) expression -> expression . TIMES expression
@@ -1240,12 +1250,12 @@ state 49
     (35) expression -> expression . MMINUS expression
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
-    (57) comparison_operator -> . LESS
-    (58) comparison_operator -> . MORE
-    (59) comparison_operator -> . EQUAL
-    (60) comparison_operator -> . INEQUAL
-    (61) comparison_operator -> . LESSEQUAL
-    (62) comparison_operator -> . MOREEQUAL
+    (58) comparison_operator -> . LESS
+    (59) comparison_operator -> . MORE
+    (60) comparison_operator -> . EQUAL
+    (61) comparison_operator -> . INEQUAL
+    (62) comparison_operator -> . LESSEQUAL
+    (63) comparison_operator -> . MOREEQUAL
 
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
@@ -1266,16 +1276,16 @@ state 49
 
 state 50
 
-    (48) while_statement -> WHILE LPAREN relation . RPAREN body
+    (49) while_statement -> WHILE LPAREN relation . RPAREN body
 
     RPAREN          shift and go to state 77
 
 
 state 51
 
-    (49) for_statement -> FOR ID ASSIGN . range body
-    (50) range -> . expression COLON expression
-    (51) range -> . expression COLON expression COLON expression
+    (50) for_statement -> FOR ID ASSIGN . range body
+    (51) range -> . expression COLON expression
+    (52) range -> . expression COLON expression COLON expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -1291,14 +1301,15 @@ state 51
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1370,14 +1381,15 @@ state 54
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1416,14 +1428,15 @@ state 55
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1462,14 +1475,15 @@ state 56
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1508,14 +1522,15 @@ state 57
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1554,14 +1569,15 @@ state 58
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1600,14 +1616,15 @@ state 59
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1646,14 +1663,15 @@ state 60
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1692,14 +1710,15 @@ state 61
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1738,14 +1757,15 @@ state 62
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1878,6 +1898,7 @@ state 65
 state 66
 
     (38) expression -> function LPAREN . expression RPAREN
+    (39) expression -> function LPAREN . sequence RPAREN
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -1893,14 +1914,17 @@ state 66
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
+    (14) sequence -> . sequence COMMA expression
+    (15) sequence -> . expression
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -1917,6 +1941,7 @@ state 66
 
     function                       shift and go to state 38
     expression                     shift and go to state 91
+    sequence                       shift and go to state 92
     value                          shift and go to state 34
     matrix                         shift and go to state 42
     access                         shift and go to state 43
@@ -1926,8 +1951,8 @@ state 67
     (21) matrix -> LBRACKET rows . RBRACKET
     (22) rows -> rows . SEMICOLON sequence
 
-    RBRACKET        shift and go to state 92
-    SEMICOLON       shift and go to state 93
+    RBRACKET        shift and go to state 93
+    SEMICOLON       shift and go to state 94
 
 
 state 68
@@ -1942,30 +1967,30 @@ state 68
 
 state 69
 
-    (46) if_statement -> IF LPAREN relation RPAREN . body
-    (47) if_statement -> IF LPAREN relation RPAREN . body ELSE body
-    (44) body -> . instruction
-    (45) body -> . LCURLY program RCURLY
+    (47) if_statement -> IF LPAREN relation RPAREN . body
+    (48) if_statement -> IF LPAREN relation RPAREN . body ELSE body
+    (45) body -> . instruction
+    (46) body -> . LCURLY program RCURLY
     (4) instruction -> . statement SEMICOLON
     (5) instruction -> . if_statement
     (6) instruction -> . while_statement
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
 
-    LCURLY          shift and go to state 96
+    LCURLY          shift and go to state 97
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -1975,8 +2000,8 @@ state 69
     RETURN          shift and go to state 18
     ID              shift and go to state 13
 
-    body                           shift and go to state 94
-    instruction                    shift and go to state 95
+    body                           shift and go to state 95
+    instruction                    shift and go to state 96
     statement                      shift and go to state 4
     if_statement                   shift and go to state 5
     while_statement                shift and go to state 6
@@ -1988,7 +2013,7 @@ state 69
 
 state 70
 
-    (43) relation -> expression comparison_operator . expression
+    (44) relation -> expression comparison_operator . expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -2004,14 +2029,15 @@ state 70
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -2026,7 +2052,7 @@ state 70
     ONES            shift and go to state 46
     LBRACKET        shift and go to state 47
 
-    expression                     shift and go to state 97
+    expression                     shift and go to state 98
     value                          shift and go to state 34
     function                       shift and go to state 38
     matrix                         shift and go to state 42
@@ -2034,125 +2060,125 @@ state 70
 
 state 71
 
-    (57) comparison_operator -> LESS .
+    (58) comparison_operator -> LESS .
 
-    ID              reduce using rule 57 (comparison_operator -> LESS .)
-    MINUS           reduce using rule 57 (comparison_operator -> LESS .)
-    LPAREN          reduce using rule 57 (comparison_operator -> LESS .)
-    FLOAT           reduce using rule 57 (comparison_operator -> LESS .)
-    INT             reduce using rule 57 (comparison_operator -> LESS .)
-    STRING          reduce using rule 57 (comparison_operator -> LESS .)
-    EYE             reduce using rule 57 (comparison_operator -> LESS .)
-    ZEROS           reduce using rule 57 (comparison_operator -> LESS .)
-    ONES            reduce using rule 57 (comparison_operator -> LESS .)
-    LBRACKET        reduce using rule 57 (comparison_operator -> LESS .)
+    ID              reduce using rule 58 (comparison_operator -> LESS .)
+    MINUS           reduce using rule 58 (comparison_operator -> LESS .)
+    LPAREN          reduce using rule 58 (comparison_operator -> LESS .)
+    FLOAT           reduce using rule 58 (comparison_operator -> LESS .)
+    INT             reduce using rule 58 (comparison_operator -> LESS .)
+    STRING          reduce using rule 58 (comparison_operator -> LESS .)
+    EYE             reduce using rule 58 (comparison_operator -> LESS .)
+    ZEROS           reduce using rule 58 (comparison_operator -> LESS .)
+    ONES            reduce using rule 58 (comparison_operator -> LESS .)
+    LBRACKET        reduce using rule 58 (comparison_operator -> LESS .)
 
 
 state 72
 
-    (58) comparison_operator -> MORE .
+    (59) comparison_operator -> MORE .
 
-    ID              reduce using rule 58 (comparison_operator -> MORE .)
-    MINUS           reduce using rule 58 (comparison_operator -> MORE .)
-    LPAREN          reduce using rule 58 (comparison_operator -> MORE .)
-    FLOAT           reduce using rule 58 (comparison_operator -> MORE .)
-    INT             reduce using rule 58 (comparison_operator -> MORE .)
-    STRING          reduce using rule 58 (comparison_operator -> MORE .)
-    EYE             reduce using rule 58 (comparison_operator -> MORE .)
-    ZEROS           reduce using rule 58 (comparison_operator -> MORE .)
-    ONES            reduce using rule 58 (comparison_operator -> MORE .)
-    LBRACKET        reduce using rule 58 (comparison_operator -> MORE .)
+    ID              reduce using rule 59 (comparison_operator -> MORE .)
+    MINUS           reduce using rule 59 (comparison_operator -> MORE .)
+    LPAREN          reduce using rule 59 (comparison_operator -> MORE .)
+    FLOAT           reduce using rule 59 (comparison_operator -> MORE .)
+    INT             reduce using rule 59 (comparison_operator -> MORE .)
+    STRING          reduce using rule 59 (comparison_operator -> MORE .)
+    EYE             reduce using rule 59 (comparison_operator -> MORE .)
+    ZEROS           reduce using rule 59 (comparison_operator -> MORE .)
+    ONES            reduce using rule 59 (comparison_operator -> MORE .)
+    LBRACKET        reduce using rule 59 (comparison_operator -> MORE .)
 
 
 state 73
 
-    (59) comparison_operator -> EQUAL .
+    (60) comparison_operator -> EQUAL .
 
-    ID              reduce using rule 59 (comparison_operator -> EQUAL .)
-    MINUS           reduce using rule 59 (comparison_operator -> EQUAL .)
-    LPAREN          reduce using rule 59 (comparison_operator -> EQUAL .)
-    FLOAT           reduce using rule 59 (comparison_operator -> EQUAL .)
-    INT             reduce using rule 59 (comparison_operator -> EQUAL .)
-    STRING          reduce using rule 59 (comparison_operator -> EQUAL .)
-    EYE             reduce using rule 59 (comparison_operator -> EQUAL .)
-    ZEROS           reduce using rule 59 (comparison_operator -> EQUAL .)
-    ONES            reduce using rule 59 (comparison_operator -> EQUAL .)
-    LBRACKET        reduce using rule 59 (comparison_operator -> EQUAL .)
+    ID              reduce using rule 60 (comparison_operator -> EQUAL .)
+    MINUS           reduce using rule 60 (comparison_operator -> EQUAL .)
+    LPAREN          reduce using rule 60 (comparison_operator -> EQUAL .)
+    FLOAT           reduce using rule 60 (comparison_operator -> EQUAL .)
+    INT             reduce using rule 60 (comparison_operator -> EQUAL .)
+    STRING          reduce using rule 60 (comparison_operator -> EQUAL .)
+    EYE             reduce using rule 60 (comparison_operator -> EQUAL .)
+    ZEROS           reduce using rule 60 (comparison_operator -> EQUAL .)
+    ONES            reduce using rule 60 (comparison_operator -> EQUAL .)
+    LBRACKET        reduce using rule 60 (comparison_operator -> EQUAL .)
 
 
 state 74
 
-    (60) comparison_operator -> INEQUAL .
+    (61) comparison_operator -> INEQUAL .
 
-    ID              reduce using rule 60 (comparison_operator -> INEQUAL .)
-    MINUS           reduce using rule 60 (comparison_operator -> INEQUAL .)
-    LPAREN          reduce using rule 60 (comparison_operator -> INEQUAL .)
-    FLOAT           reduce using rule 60 (comparison_operator -> INEQUAL .)
-    INT             reduce using rule 60 (comparison_operator -> INEQUAL .)
-    STRING          reduce using rule 60 (comparison_operator -> INEQUAL .)
-    EYE             reduce using rule 60 (comparison_operator -> INEQUAL .)
-    ZEROS           reduce using rule 60 (comparison_operator -> INEQUAL .)
-    ONES            reduce using rule 60 (comparison_operator -> INEQUAL .)
-    LBRACKET        reduce using rule 60 (comparison_operator -> INEQUAL .)
+    ID              reduce using rule 61 (comparison_operator -> INEQUAL .)
+    MINUS           reduce using rule 61 (comparison_operator -> INEQUAL .)
+    LPAREN          reduce using rule 61 (comparison_operator -> INEQUAL .)
+    FLOAT           reduce using rule 61 (comparison_operator -> INEQUAL .)
+    INT             reduce using rule 61 (comparison_operator -> INEQUAL .)
+    STRING          reduce using rule 61 (comparison_operator -> INEQUAL .)
+    EYE             reduce using rule 61 (comparison_operator -> INEQUAL .)
+    ZEROS           reduce using rule 61 (comparison_operator -> INEQUAL .)
+    ONES            reduce using rule 61 (comparison_operator -> INEQUAL .)
+    LBRACKET        reduce using rule 61 (comparison_operator -> INEQUAL .)
 
 
 state 75
 
-    (61) comparison_operator -> LESSEQUAL .
+    (62) comparison_operator -> LESSEQUAL .
 
-    ID              reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    MINUS           reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    LPAREN          reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    FLOAT           reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    INT             reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    STRING          reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    EYE             reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    ZEROS           reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    ONES            reduce using rule 61 (comparison_operator -> LESSEQUAL .)
-    LBRACKET        reduce using rule 61 (comparison_operator -> LESSEQUAL .)
+    ID              reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    MINUS           reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    LPAREN          reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    FLOAT           reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    INT             reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    STRING          reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    EYE             reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    ZEROS           reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    ONES            reduce using rule 62 (comparison_operator -> LESSEQUAL .)
+    LBRACKET        reduce using rule 62 (comparison_operator -> LESSEQUAL .)
 
 
 state 76
 
-    (62) comparison_operator -> MOREEQUAL .
+    (63) comparison_operator -> MOREEQUAL .
 
-    ID              reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    MINUS           reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    LPAREN          reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    FLOAT           reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    INT             reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    STRING          reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    EYE             reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    ZEROS           reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    ONES            reduce using rule 62 (comparison_operator -> MOREEQUAL .)
-    LBRACKET        reduce using rule 62 (comparison_operator -> MOREEQUAL .)
+    ID              reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    MINUS           reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    LPAREN          reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    FLOAT           reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    INT             reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    STRING          reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    EYE             reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    ZEROS           reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    ONES            reduce using rule 63 (comparison_operator -> MOREEQUAL .)
+    LBRACKET        reduce using rule 63 (comparison_operator -> MOREEQUAL .)
 
 
 state 77
 
-    (48) while_statement -> WHILE LPAREN relation RPAREN . body
-    (44) body -> . instruction
-    (45) body -> . LCURLY program RCURLY
+    (49) while_statement -> WHILE LPAREN relation RPAREN . body
+    (45) body -> . instruction
+    (46) body -> . LCURLY program RCURLY
     (4) instruction -> . statement SEMICOLON
     (5) instruction -> . if_statement
     (6) instruction -> . while_statement
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
 
-    LCURLY          shift and go to state 96
+    LCURLY          shift and go to state 97
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -2162,8 +2188,8 @@ state 77
     RETURN          shift and go to state 18
     ID              shift and go to state 13
 
-    body                           shift and go to state 98
-    instruction                    shift and go to state 95
+    body                           shift and go to state 99
+    instruction                    shift and go to state 96
     statement                      shift and go to state 4
     if_statement                   shift and go to state 5
     while_statement                shift and go to state 6
@@ -2175,29 +2201,29 @@ state 77
 
 state 78
 
-    (49) for_statement -> FOR ID ASSIGN range . body
-    (44) body -> . instruction
-    (45) body -> . LCURLY program RCURLY
+    (50) for_statement -> FOR ID ASSIGN range . body
+    (45) body -> . instruction
+    (46) body -> . LCURLY program RCURLY
     (4) instruction -> . statement SEMICOLON
     (5) instruction -> . if_statement
     (6) instruction -> . while_statement
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
 
-    LCURLY          shift and go to state 96
+    LCURLY          shift and go to state 97
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -2207,8 +2233,8 @@ state 78
     RETURN          shift and go to state 18
     ID              shift and go to state 13
 
-    body                           shift and go to state 99
-    instruction                    shift and go to state 95
+    body                           shift and go to state 100
+    instruction                    shift and go to state 96
     statement                      shift and go to state 4
     if_statement                   shift and go to state 5
     while_statement                shift and go to state 6
@@ -2220,8 +2246,8 @@ state 78
 
 state 79
 
-    (50) range -> expression . COLON expression
-    (51) range -> expression . COLON expression COLON expression
+    (51) range -> expression . COLON expression
+    (52) range -> expression . COLON expression COLON expression
     (30) expression -> expression . PLUS expression
     (31) expression -> expression . MINUS expression
     (32) expression -> expression . TIMES expression
@@ -2231,7 +2257,7 @@ state 79
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
 
-    COLON           shift and go to state 100
+    COLON           shift and go to state 101
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -2296,6 +2322,7 @@ state 81
     COMMA           reduce using rule 14 (sequence -> sequence COMMA expression .)
     SEMICOLON       reduce using rule 14 (sequence -> sequence COMMA expression .)
     RBRACKET        reduce using rule 14 (sequence -> sequence COMMA expression .)
+    RPAREN          reduce using rule 14 (sequence -> sequence COMMA expression .)
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -2719,7 +2746,7 @@ state 90
     (28) expression -> LPAREN expression RPAREN . TRANSPOSE
     (29) expression -> LPAREN expression RPAREN .
 
-    TRANSPOSE       shift and go to state 101
+    TRANSPOSE       shift and go to state 102
     PLUS            reduce using rule 29 (expression -> LPAREN expression RPAREN .)
     MINUS           reduce using rule 29 (expression -> LPAREN expression RPAREN .)
     TIMES           reduce using rule 29 (expression -> LPAREN expression RPAREN .)
@@ -2761,8 +2788,10 @@ state 91
     (35) expression -> expression . MMINUS expression
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
+    (15) sequence -> expression .
 
-    RPAREN          shift and go to state 102
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 103
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -2771,9 +2800,21 @@ state 91
     MMINUS          shift and go to state 60
     MTIMES          shift and go to state 61
     MDIVIDE         shift and go to state 62
+    COMMA           reduce using rule 15 (sequence -> expression .)
+
+  ! RPAREN          [ reduce using rule 15 (sequence -> expression .) ]
 
 
 state 92
+
+    (39) expression -> function LPAREN sequence . RPAREN
+    (14) sequence -> sequence . COMMA expression
+
+    RPAREN          shift and go to state 104
+    COMMA           shift and go to state 54
+
+
+state 93
 
     (21) matrix -> LBRACKET rows RBRACKET .
 
@@ -2807,7 +2848,7 @@ state 92
     ID              reduce using rule 21 (matrix -> LBRACKET rows RBRACKET .)
 
 
-state 93
+state 94
 
     (22) rows -> rows SEMICOLON . sequence
     (14) sequence -> . sequence COMMA expression
@@ -2827,14 +2868,15 @@ state 93
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -2849,53 +2891,53 @@ state 93
     ONES            shift and go to state 46
     LBRACKET        shift and go to state 47
 
-    sequence                       shift and go to state 103
+    sequence                       shift and go to state 105
     expression                     shift and go to state 33
     value                          shift and go to state 34
     function                       shift and go to state 38
     matrix                         shift and go to state 42
     access                         shift and go to state 43
 
-state 94
-
-    (46) if_statement -> IF LPAREN relation RPAREN body .
-    (47) if_statement -> IF LPAREN relation RPAREN body . ELSE body
-
-    IF              reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    WHILE           reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    FOR             reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    PRINT           reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    BREAK           reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    CONTINUE        reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    RETURN          reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    ID              reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    $end            reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    RCURLY          reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .)
-    ELSE            shift and go to state 104
-
-  ! ELSE            [ reduce using rule 46 (if_statement -> IF LPAREN relation RPAREN body .) ]
-
-
 state 95
 
-    (44) body -> instruction .
+    (47) if_statement -> IF LPAREN relation RPAREN body .
+    (48) if_statement -> IF LPAREN relation RPAREN body . ELSE body
 
-    ELSE            reduce using rule 44 (body -> instruction .)
-    IF              reduce using rule 44 (body -> instruction .)
-    WHILE           reduce using rule 44 (body -> instruction .)
-    FOR             reduce using rule 44 (body -> instruction .)
-    PRINT           reduce using rule 44 (body -> instruction .)
-    BREAK           reduce using rule 44 (body -> instruction .)
-    CONTINUE        reduce using rule 44 (body -> instruction .)
-    RETURN          reduce using rule 44 (body -> instruction .)
-    ID              reduce using rule 44 (body -> instruction .)
-    $end            reduce using rule 44 (body -> instruction .)
-    RCURLY          reduce using rule 44 (body -> instruction .)
+    IF              reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    WHILE           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    FOR             reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    PRINT           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    BREAK           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    CONTINUE        reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    RETURN          reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    ID              reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    $end            reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    RCURLY          reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .)
+    ELSE            shift and go to state 106
+
+  ! ELSE            [ reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body .) ]
 
 
 state 96
 
-    (45) body -> LCURLY . program RCURLY
+    (45) body -> instruction .
+
+    ELSE            reduce using rule 45 (body -> instruction .)
+    IF              reduce using rule 45 (body -> instruction .)
+    WHILE           reduce using rule 45 (body -> instruction .)
+    FOR             reduce using rule 45 (body -> instruction .)
+    PRINT           reduce using rule 45 (body -> instruction .)
+    BREAK           reduce using rule 45 (body -> instruction .)
+    CONTINUE        reduce using rule 45 (body -> instruction .)
+    RETURN          reduce using rule 45 (body -> instruction .)
+    ID              reduce using rule 45 (body -> instruction .)
+    $end            reduce using rule 45 (body -> instruction .)
+    RCURLY          reduce using rule 45 (body -> instruction .)
+
+
+state 97
+
+    (46) body -> LCURLY . program RCURLY
     (2) program -> . program instruction
     (3) program -> . instruction
     (4) instruction -> . statement SEMICOLON
@@ -2904,15 +2946,15 @@ state 96
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
@@ -2926,7 +2968,7 @@ state 96
     RETURN          shift and go to state 18
     ID              shift and go to state 13
 
-    program                        shift and go to state 105
+    program                        shift and go to state 107
     instruction                    shift and go to state 3
     statement                      shift and go to state 4
     if_statement                   shift and go to state 5
@@ -2937,9 +2979,9 @@ state 96
     variable                       shift and go to state 14
     access                         shift and go to state 19
 
-state 97
+state 98
 
-    (43) relation -> expression comparison_operator expression .
+    (44) relation -> expression comparison_operator expression .
     (30) expression -> expression . PLUS expression
     (31) expression -> expression . MINUS expression
     (32) expression -> expression . TIMES expression
@@ -2949,7 +2991,7 @@ state 97
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
 
-    RPAREN          reduce using rule 43 (relation -> expression comparison_operator expression .)
+    RPAREN          reduce using rule 44 (relation -> expression comparison_operator expression .)
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -2960,44 +3002,44 @@ state 97
     MDIVIDE         shift and go to state 62
 
 
-state 98
-
-    (48) while_statement -> WHILE LPAREN relation RPAREN body .
-
-    IF              reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    WHILE           reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    FOR             reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    PRINT           reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    BREAK           reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    CONTINUE        reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    RETURN          reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    ID              reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    $end            reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    ELSE            reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-    RCURLY          reduce using rule 48 (while_statement -> WHILE LPAREN relation RPAREN body .)
-
-
 state 99
 
-    (49) for_statement -> FOR ID ASSIGN range body .
+    (49) while_statement -> WHILE LPAREN relation RPAREN body .
 
-    IF              reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    WHILE           reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    FOR             reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    PRINT           reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    BREAK           reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    CONTINUE        reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    RETURN          reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    ID              reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    $end            reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    ELSE            reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
-    RCURLY          reduce using rule 49 (for_statement -> FOR ID ASSIGN range body .)
+    IF              reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    WHILE           reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    FOR             reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    PRINT           reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    BREAK           reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    CONTINUE        reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    RETURN          reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    ID              reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    $end            reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    ELSE            reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
+    RCURLY          reduce using rule 49 (while_statement -> WHILE LPAREN relation RPAREN body .)
 
 
 state 100
 
-    (50) range -> expression COLON . expression
-    (51) range -> expression COLON . expression COLON expression
+    (50) for_statement -> FOR ID ASSIGN range body .
+
+    IF              reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    WHILE           reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    FOR             reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    PRINT           reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    BREAK           reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    CONTINUE        reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    RETURN          reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    ID              reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    $end            reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    ELSE            reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+    RCURLY          reduce using rule 50 (for_statement -> FOR ID ASSIGN range body .)
+
+
+state 101
+
+    (51) range -> expression COLON . expression
+    (52) range -> expression COLON . expression COLON expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -3013,14 +3055,15 @@ state 100
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -3035,13 +3078,13 @@ state 100
     ONES            shift and go to state 46
     LBRACKET        shift and go to state 47
 
-    expression                     shift and go to state 106
+    expression                     shift and go to state 108
     value                          shift and go to state 34
     function                       shift and go to state 38
     matrix                         shift and go to state 42
     access                         shift and go to state 43
 
-state 101
+state 102
 
     (28) expression -> LPAREN expression RPAREN TRANSPOSE .
 
@@ -3075,7 +3118,7 @@ state 101
     ID              reduce using rule 28 (expression -> LPAREN expression RPAREN TRANSPOSE .)
 
 
-state 102
+state 103
 
     (38) expression -> function LPAREN expression RPAREN .
 
@@ -3109,7 +3152,41 @@ state 102
     ID              reduce using rule 38 (expression -> function LPAREN expression RPAREN .)
 
 
-state 103
+state 104
+
+    (39) expression -> function LPAREN sequence RPAREN .
+
+    PLUS            reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MINUS           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    TIMES           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    DIVIDE          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MPLUS           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MMINUS          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MTIMES          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MDIVIDE         reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    COMMA           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    SEMICOLON       reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    LESS            reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MORE            reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    EQUAL           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    INEQUAL         reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    LESSEQUAL       reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    MOREEQUAL       reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    RBRACKET        reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    RPAREN          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    COLON           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    LCURLY          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    IF              reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    WHILE           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    FOR             reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    PRINT           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    BREAK           reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    CONTINUE        reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    RETURN          reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+    ID              reduce using rule 39 (expression -> function LPAREN sequence RPAREN .)
+
+
+state 105
 
     (22) rows -> rows SEMICOLON sequence .
     (14) sequence -> sequence . COMMA expression
@@ -3119,31 +3196,31 @@ state 103
     COMMA           shift and go to state 54
 
 
-state 104
+state 106
 
-    (47) if_statement -> IF LPAREN relation RPAREN body ELSE . body
-    (44) body -> . instruction
-    (45) body -> . LCURLY program RCURLY
+    (48) if_statement -> IF LPAREN relation RPAREN body ELSE . body
+    (45) body -> . instruction
+    (46) body -> . LCURLY program RCURLY
     (4) instruction -> . statement SEMICOLON
     (5) instruction -> . if_statement
     (6) instruction -> . while_statement
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
 
-    LCURLY          shift and go to state 96
+    LCURLY          shift and go to state 97
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -3153,8 +3230,8 @@ state 104
     RETURN          shift and go to state 18
     ID              shift and go to state 13
 
-    body                           shift and go to state 107
-    instruction                    shift and go to state 95
+    body                           shift and go to state 109
+    instruction                    shift and go to state 96
     statement                      shift and go to state 4
     if_statement                   shift and go to state 5
     while_statement                shift and go to state 6
@@ -3164,9 +3241,9 @@ state 104
     variable                       shift and go to state 14
     access                         shift and go to state 19
 
-state 105
+state 107
 
-    (45) body -> LCURLY program . RCURLY
+    (46) body -> LCURLY program . RCURLY
     (2) program -> program . instruction
     (4) instruction -> . statement SEMICOLON
     (5) instruction -> . if_statement
@@ -3174,20 +3251,20 @@ state 105
     (7) instruction -> . for_statement
     (8) statement -> . assignment
     (9) statement -> . keyword
-    (46) if_statement -> . IF LPAREN relation RPAREN body
-    (47) if_statement -> . IF LPAREN relation RPAREN body ELSE body
-    (48) while_statement -> . WHILE LPAREN relation RPAREN body
-    (49) for_statement -> . FOR ID ASSIGN range body
+    (47) if_statement -> . IF LPAREN relation RPAREN body
+    (48) if_statement -> . IF LPAREN relation RPAREN body ELSE body
+    (49) while_statement -> . WHILE LPAREN relation RPAREN body
+    (50) for_statement -> . FOR ID ASSIGN range body
     (10) assignment -> . variable assignment_operator expression
-    (39) keyword -> . PRINT sequence
-    (40) keyword -> . BREAK
-    (41) keyword -> . CONTINUE
-    (42) keyword -> . RETURN
+    (40) keyword -> . PRINT sequence
+    (41) keyword -> . BREAK
+    (42) keyword -> . CONTINUE
+    (43) keyword -> . RETURN
     (11) variable -> . ID
     (12) variable -> . access
     (13) access -> . ID LBRACKET sequence RBRACKET
 
-    RCURLY          shift and go to state 108
+    RCURLY          shift and go to state 110
     IF              shift and go to state 10
     WHILE           shift and go to state 11
     FOR             shift and go to state 12
@@ -3207,10 +3284,10 @@ state 105
     variable                       shift and go to state 14
     access                         shift and go to state 19
 
-state 106
+state 108
 
-    (50) range -> expression COLON expression .
-    (51) range -> expression COLON expression . COLON expression
+    (51) range -> expression COLON expression .
+    (52) range -> expression COLON expression . COLON expression
     (30) expression -> expression . PLUS expression
     (31) expression -> expression . MINUS expression
     (32) expression -> expression . TIMES expression
@@ -3220,16 +3297,16 @@ state 106
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
 
-    LCURLY          reduce using rule 50 (range -> expression COLON expression .)
-    IF              reduce using rule 50 (range -> expression COLON expression .)
-    WHILE           reduce using rule 50 (range -> expression COLON expression .)
-    FOR             reduce using rule 50 (range -> expression COLON expression .)
-    PRINT           reduce using rule 50 (range -> expression COLON expression .)
-    BREAK           reduce using rule 50 (range -> expression COLON expression .)
-    CONTINUE        reduce using rule 50 (range -> expression COLON expression .)
-    RETURN          reduce using rule 50 (range -> expression COLON expression .)
-    ID              reduce using rule 50 (range -> expression COLON expression .)
-    COLON           shift and go to state 109
+    LCURLY          reduce using rule 51 (range -> expression COLON expression .)
+    IF              reduce using rule 51 (range -> expression COLON expression .)
+    WHILE           reduce using rule 51 (range -> expression COLON expression .)
+    FOR             reduce using rule 51 (range -> expression COLON expression .)
+    PRINT           reduce using rule 51 (range -> expression COLON expression .)
+    BREAK           reduce using rule 51 (range -> expression COLON expression .)
+    CONTINUE        reduce using rule 51 (range -> expression COLON expression .)
+    RETURN          reduce using rule 51 (range -> expression COLON expression .)
+    ID              reduce using rule 51 (range -> expression COLON expression .)
+    COLON           shift and go to state 111
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -3240,43 +3317,43 @@ state 106
     MDIVIDE         shift and go to state 62
 
 
-state 107
-
-    (47) if_statement -> IF LPAREN relation RPAREN body ELSE body .
-
-    IF              reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    WHILE           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    FOR             reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    PRINT           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    BREAK           reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    CONTINUE        reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    RETURN          reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    ID              reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    $end            reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    ELSE            reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-    RCURLY          reduce using rule 47 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
-
-
-state 108
-
-    (45) body -> LCURLY program RCURLY .
-
-    ELSE            reduce using rule 45 (body -> LCURLY program RCURLY .)
-    IF              reduce using rule 45 (body -> LCURLY program RCURLY .)
-    WHILE           reduce using rule 45 (body -> LCURLY program RCURLY .)
-    FOR             reduce using rule 45 (body -> LCURLY program RCURLY .)
-    PRINT           reduce using rule 45 (body -> LCURLY program RCURLY .)
-    BREAK           reduce using rule 45 (body -> LCURLY program RCURLY .)
-    CONTINUE        reduce using rule 45 (body -> LCURLY program RCURLY .)
-    RETURN          reduce using rule 45 (body -> LCURLY program RCURLY .)
-    ID              reduce using rule 45 (body -> LCURLY program RCURLY .)
-    $end            reduce using rule 45 (body -> LCURLY program RCURLY .)
-    RCURLY          reduce using rule 45 (body -> LCURLY program RCURLY .)
-
-
 state 109
 
-    (51) range -> expression COLON expression COLON . expression
+    (48) if_statement -> IF LPAREN relation RPAREN body ELSE body .
+
+    IF              reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    WHILE           reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    FOR             reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    PRINT           reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    BREAK           reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    CONTINUE        reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    RETURN          reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    ID              reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    $end            reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    ELSE            reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+    RCURLY          reduce using rule 48 (if_statement -> IF LPAREN relation RPAREN body ELSE body .)
+
+
+state 110
+
+    (46) body -> LCURLY program RCURLY .
+
+    ELSE            reduce using rule 46 (body -> LCURLY program RCURLY .)
+    IF              reduce using rule 46 (body -> LCURLY program RCURLY .)
+    WHILE           reduce using rule 46 (body -> LCURLY program RCURLY .)
+    FOR             reduce using rule 46 (body -> LCURLY program RCURLY .)
+    PRINT           reduce using rule 46 (body -> LCURLY program RCURLY .)
+    BREAK           reduce using rule 46 (body -> LCURLY program RCURLY .)
+    CONTINUE        reduce using rule 46 (body -> LCURLY program RCURLY .)
+    RETURN          reduce using rule 46 (body -> LCURLY program RCURLY .)
+    ID              reduce using rule 46 (body -> LCURLY program RCURLY .)
+    $end            reduce using rule 46 (body -> LCURLY program RCURLY .)
+    RCURLY          reduce using rule 46 (body -> LCURLY program RCURLY .)
+
+
+state 111
+
+    (52) range -> expression COLON expression COLON . expression
     (24) expression -> . value
     (25) expression -> . ID
     (26) expression -> . MINUS expression
@@ -3292,14 +3369,15 @@ state 109
     (36) expression -> . expression MTIMES expression
     (37) expression -> . expression MDIVIDE expression
     (38) expression -> . function LPAREN expression RPAREN
+    (39) expression -> . function LPAREN sequence RPAREN
     (16) value -> . FLOAT
     (17) value -> . INT
     (18) value -> . STRING
     (19) value -> . matrix
     (20) value -> . access
-    (63) function -> . EYE
-    (64) function -> . ZEROS
-    (65) function -> . ONES
+    (64) function -> . EYE
+    (65) function -> . ZEROS
+    (66) function -> . ONES
     (21) matrix -> . LBRACKET rows RBRACKET
     (13) access -> . ID LBRACKET sequence RBRACKET
 
@@ -3314,15 +3392,15 @@ state 109
     ONES            shift and go to state 46
     LBRACKET        shift and go to state 47
 
-    expression                     shift and go to state 110
+    expression                     shift and go to state 112
     value                          shift and go to state 34
     function                       shift and go to state 38
     matrix                         shift and go to state 42
     access                         shift and go to state 43
 
-state 110
+state 112
 
-    (51) range -> expression COLON expression COLON expression .
+    (52) range -> expression COLON expression COLON expression .
     (30) expression -> expression . PLUS expression
     (31) expression -> expression . MINUS expression
     (32) expression -> expression . TIMES expression
@@ -3332,15 +3410,15 @@ state 110
     (36) expression -> expression . MTIMES expression
     (37) expression -> expression . MDIVIDE expression
 
-    LCURLY          reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    IF              reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    WHILE           reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    FOR             reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    PRINT           reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    BREAK           reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    CONTINUE        reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    RETURN          reduce using rule 51 (range -> expression COLON expression COLON expression .)
-    ID              reduce using rule 51 (range -> expression COLON expression COLON expression .)
+    LCURLY          reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    IF              reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    WHILE           reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    FOR             reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    PRINT           reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    BREAK           reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    CONTINUE        reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    RETURN          reduce using rule 52 (range -> expression COLON expression COLON expression .)
+    ID              reduce using rule 52 (range -> expression COLON expression COLON expression .)
     PLUS            shift and go to state 55
     MINUS           shift and go to state 56
     TIMES           shift and go to state 57
@@ -3350,3 +3428,7 @@ state 110
     MTIMES          shift and go to state 61
     MDIVIDE         shift and go to state 62
 
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for RPAREN in state 91 resolved as shift

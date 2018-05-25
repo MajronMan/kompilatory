@@ -174,13 +174,23 @@ class Instruction(Node):
         return str(self.line)
 
 
-class MatrixInitializer(Node):
-    def __init__(self, value, position):
+class Matrix(Node):
+    def __init__(self, rows, position):
         super().__init__(position)
-        self.value = value
+        self.dims = len(rows), len(rows[0])
+        self.rows = rows
 
     def __repr__(self):
-        return str(self.value)
+        return str(self.rows)
+
+    def has_correct_dims(self):
+        sizes = list(map(len, self.rows))
+        return not sizes or sizes.count(sizes[0]) == len(sizes)
+
+    def dims_compatible(self, other):
+        if type(other) is not Matrix:
+            return False
+        return self.dims == other.dims
 
 
 class Value(Node):
@@ -200,6 +210,12 @@ class Rows(Node):
     def __repr__(self):
         return "[" + ", ".join(map(str, self.row_list)) + "]"
 
+    def __len__(self):
+        return len(self.row_list)
+
+    def __getitem__(self, item):
+        return self.row_list[item]
+
 
 class Sequence(Node):
     def __init__(self, expression, position):
@@ -208,3 +224,9 @@ class Sequence(Node):
 
     def __repr__(self):
         return "{}".format(self.expressions)
+
+    def __len__(self):
+        return len(self.expressions)
+
+    def __getitem__(self, item):
+        return self.expressions[item]

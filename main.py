@@ -11,15 +11,17 @@ if __name__ == '__main__':
         file = open(filename, "r")
     except IOError:
         print("Cannot open {0} file".format(filename))
-        sys.exit(0)
+        sys.exit(1)
 
     MatrixParser = MatrixParser()
     parser = yacc.yacc(module=MatrixParser)
     text = file.read()
     ast = parser.parse(text, lexer=MatrixParser.matrix_lexer)
+    if MatrixParser.error or not parser.errorok:
+        sys.exit(1)
     tc = TypeChecker()
     tc.visit(ast)
     print(ast.printTree())
 
-    print(tc.errors)
+    list(map(print, tc.errors))
 

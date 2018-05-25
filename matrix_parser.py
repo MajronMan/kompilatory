@@ -97,7 +97,7 @@ class MatrixParser:
         """
         matrix : LBRACKET rows RBRACKET
         """
-        p[0] = ast.MatrixInitializer(p[2], p.lexer.lexer.lineno)
+        p[0] = ast.Matrix(p[2], p.lexer.lexer.lineno)
 
     def p_rows(self, p):
         """
@@ -163,6 +163,7 @@ class MatrixParser:
     def p_expression_fun(self, p):
         """
         expression : function LPAREN expression RPAREN
+                   | function LPAREN sequence RPAREN
         """
         p[0] = ast.Function(p[1], p[3], p.lexer.lexer.lineno)
 
@@ -263,10 +264,16 @@ class MatrixParser:
 
     def p_error(self, p):
         self.error = True
+        if p:
+            line = p.lexer.lineno if hasattr(p.lexer, 'lineno') else p.lexer.lexer.lineno
+            value = p.value
+        else:
+            line = 'last'
+            value = ''
         print(
             '/' * 40 +
             '\nERROR\nIllegal symbol {} at line {}\n'.format(
-                p.value, p.lexer.lineno
+                value, line
             ) + '/' * 40
         )
 

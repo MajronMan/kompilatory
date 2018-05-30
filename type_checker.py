@@ -62,6 +62,7 @@ class TypeChecker(NodeVisitor):
                         'Argument must be int or sequence of ints, {} given'.format(type(n.primitive).__name__)
                     )
                 )
+
         self.visit(node.argument)
         check_value_type(node.argument, self.errors)
         if type(node.argument) is Sequence:
@@ -122,39 +123,41 @@ class TypeChecker(NodeVisitor):
 
     def visit_Range(self, node):
         nodes = [node.start, node.end, node.step]
-        values = []
-        valid_types = [Value, Variable]
-        # for n in nodes:
-        #     if type(n) not in valid_types:
-        #         self.errors.append(InvalidRangeError(node.position, 'Only integers allowed in range'))
-        #         return
-        #     if type(n) is Variable:
-        #         l = self.symtab.lookup(node.name)
-        #         if self.symtab.lookup(node.name) is None:
-        #             self.errors.append(InvalidNameError(node.name, node.position))
-        #         elif l.stype is not int:
-        #             self.errors.append(InvalidRangeError(node.position, 'Only integers allowed in range'))
-        #             return
-        #     else:
-        #
-        #         values.append(n)
+        for n in nodes:
+            if type(n) is Value and type(n.primitive) is not int:
+                self.errors.append(InvalidRangeError(node.position, 'Only integers allowed in range, {} given'.format(
+                    type(n.primitive).__name__)))
+                return
+            if type(n) is Variable:
+                l = self.symtab.lookup(n.name)
+                if self.symtab.lookup(n.name) is None:
+                    self.errors.append(InvalidNameError(n.name, node.position))
+                elif type(l) is Value and type(l.primitive) is not int:
+                    self.errors.append(InvalidRangeError(node.position, 'Only integers allowed in range'))
+                    return
 
     def visit_If(self, node):
+        self.symtab.push_scope()
         self.visit_Expression(node.condition)
         self.visit_Instruction(node.expression)
         if node.else_expression is not None:
             self.visit_Instruction(node.else_expression)
+        self.symtab.pop_scope()
 
     def visit_While(self, node):
         self.loop += 1
+        self.symtab.push_scope()
         self.visit_Expression(node.condition)
         self.visit_Instruction(node.body)
+        self.symtab.pop_scope()
         self.loop -= 1
 
     def visit_For(self, node):
         self.loop += 1
+        self.symtab.push_scope()
         self.visit(node.range)
         self.visit_Instruction(node.body)
+        self.symtab.pop_scope()
         self.loop -= 1
 
     def visit_Matrix(self, node):

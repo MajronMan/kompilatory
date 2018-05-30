@@ -15,3 +15,14 @@ z = ones(1,"2");
 a = 12;
 b = 14;
 c = a + b;
+k = 4.5;
+
+while(1<2){
+  nnn = 12;
+}
+
+cf = nnn + 4;
+
+for ppp = 1:k {
+  bp = 1;
+}

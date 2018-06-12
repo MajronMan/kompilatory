@@ -2,6 +2,8 @@ class Node:
     def __init__(self, position):
         self.position = position
 
+    def accept(self, visitor):
+        return visitor.visit(self)
 
 class BinaryExpression(Node):
     def __init__(self, left, operator, right, position):
@@ -36,6 +38,7 @@ class Transposition(UnaryExpression):
         super().__init__('\'', operand, position, False)
 
 
+
 class Assignment(BinaryExpression):
     pass
 
@@ -58,6 +61,8 @@ class Variable(Node):
     def __repr__(self):
         return '{}'.format(self.name)
 
+    # def accept(self):
+    #     return self.name
 
 class If(Node):
     def __init__(self, condition, expression, position, else_expression=None):
@@ -201,6 +206,9 @@ class Value(Node):
     def __repr__(self):
         return "{}({})".format(type(self.primitive).__name__, self.primitive)
 
+    # def accept(self):
+    #     print(self.primitive)
+    #     return self.primitive;
 
 class Rows(Node):
     def __init__(self, sequence, position):
